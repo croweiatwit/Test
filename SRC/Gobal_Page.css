@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+    --base-color: #79768e83;
+    --accent-color: #2E2B41; /*Really dark color*/
+    --text-color: black;
+    --input-color: #f3f0ff64; /* light grey for the input boxes */
+    --login-color: #092beb;
+    --menu-color: #3271a5;
+    --top-strip-color: #79768e30;
+}
+
+
+    
+
+html {
+    font-family: Poppins, Segoe UI, sans-serif;
+
+}

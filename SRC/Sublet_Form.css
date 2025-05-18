@@ -1,0 +1,113 @@
+/* Sublet_Form.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f0f0f0;
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
+
+
+.back {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.back button {
+  background: none;
+  border: none;
+  font-size: 22pt;
+  cursor: pointer;
+  color: #666;
+}
+
+.back button:hover {
+  color: #333;
+}
+
+
+.center-container {
+  max-width: 480px;
+  background: white;
+  margin: 40px auto;
+  padding: 30px 40px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  position: relative;
+}
+
+h1 {
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: #222;
+  text-align: center;
+}
+
+
+label {
+    display: block;
+  font-weight: 600;
+  margin-bottom: 3px;  /* less space below label */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+input[type="file"] {
+  margin-bottom: 5x;
+  width: 35%;
+  padding: 8px;
+  
+  padding: 8px;
+    /* less space below input */
+}
+img#imagePreview {
+  display: block;
+  max-width: 150px;
+  margin-bottom: 15px;
+}
+
+button[type="button"],
+button[type="submit"] {
+  padding: 10px 15px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+button[type="button"]:hover,
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+
+
+.button-group {
+  display: flex;
+  justify-content: flex-start; /* or center/right if preferred */
+  gap: 10px; /* space between buttons */
+  margin-top: 10px;
+}
+
+.button-group button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.button-group button:hover {
+  background-color: #0056b3;
+}
+

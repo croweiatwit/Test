@@ -1,0 +1,256 @@
+iframe {
+            width: 100%;      /* 100% of the parent container's width */
+            height: 100vh;    /* 100% of the viewport height */
+            border: none;     /* Optional: Remove iframe border */
+        }
+
+body {
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;  /* Prevents scrollbars on the page */
+    font-size: 15pt;
+}
+
+
+.Menu {
+    
+    height: 100vh; /* Ensures full height */
+    width: 245px;
+    position: fixed; /* Keeps it on screen */
+    top: 0;
+    left: 0;
+    background-color: whitesmoke;
+    transition: transform 0.5s ease; /* Smooth transition */
+    transform: translateX(-300px); /* Starts hidden */
+    z-index: 100; /* Ensures it's above other elements */
+}
+ul.main-menu {
+    /* Space between the two menus */
+    /* Add a background to the main menu */
+    
+    padding-top: 70px;
+    padding-left: 10%;
+    border-radius: 8px; /* Optional rounded corners */
+}
+
+ul.main-menu li {
+   
+   display: flex;
+   align-items: center;
+   list-style: none;
+   margin-bottom: 20px;
+}
+
+
+ul.main-menu a:hover{
+   color: black;  /* need to fix that*/
+}
+
+
+ul.main-menu a {
+   display: flex;
+   align-items: center;
+   color: var(--menu-color);
+   font-weight: 500;
+   padding-left: 10px;
+   text-transform: uppercase;
+   text-decoration: none;
+}
+
+
+ul.main-menu svg {
+   height: 24px;
+   width: 24px;
+   margin-right: 10px;
+}
+
+
+ul.account-menu {
+   /* Different background for additional menu */
+   padding-top: 5cm;
+   padding-left: 10%;
+   border-radius: 8px;
+}
+
+ul.account-menu li {
+  display: flex;
+align-items: center;
+list-style: none;
+margin-bottom: 20px;
+}
+
+ul.account-menu a:hover{
+   color: var(--menu-color);  /* need to fix that*/
+}
+ul.account-menu a {
+  display: flex;
+  align-items: center;
+  color: var(--text-color);
+  font-weight: 500;
+  padding-left: 10px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+ul.account-menu svg {
+  height: 24px;
+  width: 24px;
+  margin-right: 10px;
+}
+
+input{
+   opacity: 0;
+   position: absolute;
+
+}
+
+/* Styling for the toggle button */
+.toggle {
+    position: fixed; /* Keeps button in place */
+    height: 40px;
+    width: 40px;
+    z-index: 1100; /* Above the menu */
+    cursor: pointer;
+    top: 10px;
+    left: 15px;
+}
+
+.toggle .common {
+    position: absolute;
+    height: 4px;
+    width: 30px;
+    background-color: black;
+    border-radius: 50px;
+    transition: 0.3s ease;
+}
+
+.toggle .top_line {
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.toggle .middle_line {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.toggle .bottom_line {
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Menu open state (JavaScript handles this now) */
+.menu-open .Menu {
+    transform: translateX(0);
+}
+
+.menu-open .toggle .top_line {
+    left: 3px;
+    top: 22px;
+    width: 35px;
+    transform: rotate(45deg);
+}
+
+.menu-open .toggle .bottom_line {
+    left: 3px;
+    top: 22px;
+    width: 35px;
+    transform: rotate(-45deg);
+}
+
+.menu-open .toggle .middle_line {
+    opacity: 0;
+    transform: translateX(20px);
+}
+
+/*Need to fix this*/
+.top-strip {
+    position: fixed; /* Fix it at the top of the page */
+    width: 100%;
+    height: 50px; /* Adjust height as needed */
+    background: rgba(254, 254, 254, 0.512); /* Translucent background */
+    color: var(--text-color); /* Text color for visibility */
+    display: flex;
+    align-items: center; /* Vertically center the text */
+    justify-content: center; /* Horizontally center the text */
+    z-index: 1; /* Ensures it's above the image */
+    padding: 0 20px;
+}
+
+.top-strip h2 {
+    margin: 0;
+    font-size: 30px; /* Adjust the font size as needed */
+    text-transform: uppercase;
+    z-index: 10px;
+     /* Optional */
+       
+}
+.overlay-text {
+    position: absolute;
+    top: 30%; /* Centers vertically */
+    left: 50%; /* Centers horizontally */
+    transform: translate(-50%, -50%); /* Ensures perfect centering */
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    color: white;
+    padding: 15px 25px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: 20px  /*Does not wrap the words*/
+ /* Optional */
+}
+.header-logout {
+    position: absolute; /* Position logout button */
+    top: 5px;
+    right: 20px;
+    z-index: 1001; /* Above the image and top strip */
+}
+
+.header-logout button{
+
+    box-sizing: border-box;
+    padding: 10px;
+    align-items: center;
+    /*something is wrong with the border-radius*/
+    background-color: transparent;
+    border-radius: 20px 20px 20px 20px;
+
+}
+.header-logout button:hover{
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.header-subset {
+    position: absolute;
+    top: 5px;
+    right: 100px; /* Or left: 20px, depending on layout */
+    z-index: 1001; /* Above the image and top strip */
+}
+
+.header-subset button{
+
+    box-sizing: border-box;
+    padding: 10px;
+    align-items: center;
+    /*something is wrong with the border-radius*/
+    background-color: transparent;
+    border-radius: 20px 20px 20px 20px;
+
+}
+.header-subset button:hover{
+    background-color: var(--accent-color);
+    color: white;
+}
+
+

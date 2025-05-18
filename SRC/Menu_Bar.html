@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Menu</title>
+    <link rel="stylesheet" href="Gobal_Page.css">
+    <link rel="stylesheet" href="Menu_Bar.css">
+
+</head>
+<body>
+
+    <label for="menuToggle">
+        <input type="checkbox" id="menuToggle">
+        <div class="toggle">
+            <span class="top_line common"></span>
+            <span class="middle_line common"></span>
+            <span class="bottom_line common"></span>
+        </div>
+    </label>
+    
+    <script>
+        //this is the menu code.
+        document.addEventListener("DOMContentLoaded", function () {
+            const menuToggle = document.getElementById("menuToggle");
+            const menu = document.querySelector(".Menu");
+            const body = document.body; // You can attach the class to another container if needed
+
+            menuToggle.addEventListener("change", function () {
+                if (menuToggle.checked) {
+                    menu.style.transform = "translateX(0)";
+                    body.classList.add("menu-open"); // Add class to trigger CSS animation
+                } else {
+                    menu.style.transform = "translateX(-300px)";
+                    body.classList.remove("menu-open"); // Remove class to revert animation
+                }
+            });
+        });
+    </script>
+
+    <!-- Load icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <!-- fix this needs to stop moving all around-->
+
+
+
+    <div class="Menu">
+
+        <ul class="main-menu">
+            <li>
+                <label for="Dashboard">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                        fill="#3271a5">
+                        <path
+                            d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Z" />
+                    </svg>
+                </label>
+
+                <a href="Home_page.html">Home</a>
+            </li>
+            <li>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                    fill="#7bd05d">
+                    <path
+                        d="m136-240-56-56 296-298 160 160 208-206H640v-80h240v240h-80v-104L536-320 376-480 136-240Z" />
+                </svg>
+                <a href="trending.html">Trending</a>
+            </li>
+            <li>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                    fill="#Ff0000">
+                    <path
+                        d="M480-388q51-47 82.5-77.5T611-518q17-22 23-38.5t6-35.5q0-36-26-62t-62-26q-21 0-40.5 8.5T480-648q-12-15-31-23.5t-41-8.5q-36 0-62 26t-26 62q0 19 5.5 35t22.5 38q17 22 48 52.5t84 78.5ZM200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Z" />
+                </svg>
+                <a href="saved_listings.html">Saved</a>
+
+            </li>
+            <li>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                    fill="#D2B48C">
+                    <path
+                        d="M80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm160-320h320v-80H240v80Zm0-120h480v-80H240v80Zm0-120h480v-80H240v80Z" />
+                </svg>
+                <a href="message.html" target="_top">Messages</a>
+
+
+
+            </li>
+  
+            <!--
+            This needs to be a explore button with a drop down menu:
+            with Crime/safest 
+            Neighborhoods
+            Rent Calculation: 
+
+            -->
+            <li>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                    fill="#3271a5">
+                    <path
+                        d="m368-336 112-84 110 84-42-136 112-88H524l-44-136-44 136H300l110 88-42 136ZM480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q104-33 172-132t68-220v-189l-240-90-240 90v189q0 121 68 220t172 132Zm0-316Z" />
+                </svg>
+                <a href="crime_mapping.html">Crime Mapping</a>
+
+            </li>
+
+
+
+
+
+
+
+        </ul>
+        <ul class="account-menu">
+            <li>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                    fill="#000000">
+                    <path
+                        d="m640-120-12-60q-12-5-22.5-10.5T584-204l-58 18-40-68 46-40q-2-14-2-26t2-26l-46-40 40-68 58 18q11-8 21.5-13.5T628-460l12-60h80l12 60q12 5 22.5 11t21.5 15l58-20 40 70-46 40q2 12 2 25t-2 25l46 40-40 68-58-18q-11 8-21.5 13.5T732-180l-12 60h-80ZM80-160v-112q0-33 17-62t47-44q51-26 115-44t141-18h14q6 0 12 2-29 72-24 143t48 135H80Zm600-80q33 0 56.5-23.5T760-320q0-33-23.5-56.5T680-400q-33 0-56.5 23.5T600-320q0 33 23.5 56.5T680-240ZM400-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47Z" />
+                </svg>
+                <a href="account.html">Account</a>
+
+            </li>
+            <li>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                    fill="#000000">
+                    <path
+                        d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm112-260q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Z" />
+                </svg>
+                <a href="settings.html">Settings</a>
+
+
+            </li>
+            <li>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                    fill="#000000">
+                    <path
+                        d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v80h-80v-80H200v560h560v-80h80v80q0 33-23.5 56.5T760-120H200Zm480-160-56-56 103-104H360v-80h367L624-624l56-56 200 200-200 200Z" />
+                </svg>
+                <a href="Login_Page.html">Log Out</a>
+
+            </li>
+        </ul>
+    </div>
+
+    <div class="top-strip">
+        <h2>Student APTs</h2> <!-- You can add a logo or text here -->
+    </div>
+    
+    <hr style="margin-top: 50px; height: 3px; background-color: black; border: none;">
+
+
+
+    <div class="header-logout">
+        <a href="Login_Page.html">
+            <button type="Submit">Log Out</button>
+        </a>
+
+    </div>
+
+    <div class="header-subset">
+        <a href="Sublet_Form.html">
+            <button type="Add Sublet">Add Sublet</button>
+        </a>
+
+
+    </div>
+
+
+
+</body>
+
+</html>
