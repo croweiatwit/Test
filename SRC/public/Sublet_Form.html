@@ -1,0 +1,112 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Form Page</title>
+  <link rel="stylesheet" href="Sublet_Form.css">
+  <link rel="stylesheet" href="Gobal_Page.css">
+  <script src="Sublet_Form.js"></script>
+</head>
+
+<body>
+<div class="center-container">
+  <div class="back">
+    <button onclick="goBack()">&times;</button>
+  </div>
+
+  <div class="top-strip"> 
+    <h1>Sublet Form</h1>
+  </div>
+
+  <form action="/submit-form" method="POST" enctype="multipart/form-data">
+
+    <!-- Photo Upload -->
+    <div class="form-box">
+      <label for="photo" class="upload-label">Upload Photo(s) Here</label><br>
+      <input type="file" class="file-input" id="photo"  name="files" multiple accept="image/*" onchange="previewImage(event)">
+      <div class="img-wrap" id="previewContainer" style="display: none;">
+        <span class="close" onclick="removePreview()">&times;</span>
+        <img id="imagePreview" alt="Image Preview" style="max-width: 200px;" style="max-height: 150px;"/>
+      </div>
+    </div>
+
+    <!-- User Info -->
+    <div class="form-box">
+      <label>User Name<br>
+        <input type="text" id="User_Name" name="User_Name" required>
+      </label><br>
+
+      <label>User Email<br>
+        <input type="email" id="Email" name="Email" required>
+      </label>
+    </div>
+
+    <!-- Apartment Info -->
+    <div class="form-box">
+      <label>Apartment Name<br>
+        <input type="text" id="Apartment_Name" name="Apartment_Name" required>
+      </label><br>
+
+      <label>Apartment Address<br>
+        <input type="text" id="Address" name="Address" required>
+      </label>
+    </div>
+
+    <!-- Room Details (Horizontal) -->
+    <div class="form-box row-group">
+  <!-- Studio Group -->
+  <div class="input-block">
+    <label>Studio</label><br>
+    <input type="radio" name="studio" value="yes"> Yes<br>
+    <input type="radio" name="studio" value="no"> No
+  </div>
+
+  <!-- Bedrooms -->
+  <div class="input-block">
+    <label>Bedrooms</label><br>
+    <input type="number" id="Bedrooms" name="Bedrooms" required>
+  </div>
+
+  <!-- Bathroom -->
+  <div class="input-block">
+    <label>Bathroom</label><br>
+    <input type="number" id="Bathroom" name="Bathroom" required>
+  </div>
+</div>
+
+    <div class="form-box">
+      <label>Rent<br>
+        <input type="number" id="Rent" name="Rent" required>
+      </label>
+
+    </div>
+    <!-- Parking -->
+    <div class="form-box">
+      <label>Parking</label><br>
+      <input type="radio" name="Parking" value="yes" required> Yes<br>
+      <input type="radio" name="Parking" value="no"> No
+    </div>
+    <!-- Dates (Horizontal) -->
+    <div class="form-box row-group">
+      <label>Start Date<br>
+        <input type="date" id="Start" name="Start" required>
+      </label>
+
+      <label>End Date<br>
+        <input type="date" id="End" name="End" required>
+      </label>
+    </div>
+
+    <!-- Buttons -->
+    <div class="button-group">
+      <button type="button">Preview Submission</button>
+      <button type="submit" onclick="submitForm()">Submit for Approval</button>
+    </div>
+
+  </form>
+</div>
+</body>
+</html>

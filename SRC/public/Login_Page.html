@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset = "UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        <link rel="stylesheet" href="Gobal_Page.css">
+        <link rel="stylesheet" href="Login_Page.css">
+
+    </head>
+    <body>
+        
+        
+        <div class="wrapper"> 
+            <h1>Student APTs</h1>
+            <h3>Welcome Back to Student APTs a College Student Housing Service</h3>
+           
+
+            <h2>Login</h2>
+            <p id = "error-message"></p>
+            <form id="login-form" action="/api/login" method="POST">
+
+
+
+                <div>
+                    <label for="Username-input">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M480-440q58 0 99-41t41-99q0-58-41-99t-99-41q-58 0-99 41t-41 99q0 58 41 99t99 41ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-46q-54-53-125.5-83.5T480-360q-83 0-154.5 30.5T200-246v46Z"/></svg>
+                    </label>
+                    <input required type="text" name="username" id="Username-input" placeholder="Username or Email" oninvalid="this.setCustomValidity('Please Enter User-Name')" oninput="setCustomValidity('')">
+                </div>
+                
+                <div>
+                    <label for="Password-input">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="10-960 960 960" width="24px" fill="#000000"><path d="M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Zm0-80h480v-400H240v400Zm240-120q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80ZM240-160v-400 400Z"/></svg>
+                    </label>
+                    <input required type="password" name="password" id="Password"placeholder="Password" 
+                    oninvalid="this.setCustomValidity('Please Enter valid Password: \n - Must have number: 1 2 3\n - Must have special chars: ? ! #\n - Must have uppercase letters: A B C')" oninput="setCustomValidity('')">
+
+                </div>
+                
+            <button type="submit">LOGIN</button>
+            
+
+            </form>
+            <p>New Here? <a href="Sign_in_Page.html">Create an Account</a></p>
+
+        </div>
+
+        <script>
+document.getElementById("login-form").addEventListener("submit", function(event) {
+  event.preventDefault(); // prevent default form submission
+
+  const username = document.getElementById("Username-input").value;
+  const password = document.getElementById("Password").value;
+
+  fetch("/api/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ username, password })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.message.includes("Login successful")) {
+      // Redirect to home page
+      window.location.href = "/Home_page.html";
+    } else {
+      document.getElementById("error-message").textContent = data.message;
+    }
+  })
+  .catch(err => {
+    console.error("Login error:", err);
+    document.getElementById("error-message").textContent = "An error occurred during login.";
+  });
+});
+</script>
+
+
+
+
+
+    </body>
+</html>
