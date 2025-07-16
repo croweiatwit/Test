@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="CSS/Gobal_Page.css">
+  <link rel="stylesheet" href="CSS/Setting_Page.css">
+  <title>Sublet Form</title>
+</head>
+
+<body>
+  <div class="form-container">
+
+    <div class="outer" onclick="window.history.back();">
+      <div class="inner">
+        <label>Back</label>
+      </div>
+    </div>
+
+    <div class="form-intro">
+      <h1>SETTINGS</h1>
+      <a href="Setting_Page.html">
+        <button>General</button>
+      </a>
+      <a href="Setting_Account_Page.html">
+        <button>Account</button>
+      </a>
+
+    </div>
+
+    <!-- Right Panel -->
+    <div class="general-fields">
+
+
+      <div class="dark-mode">
+        <label for="public">Dark Mode</label>
+        <label class="switch">
+          <input type="checkbox" name="dark mode" value="yes" data-fallback="no">
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="color-picker">
+        <label>Background Color</label>
+        <div class="color-options">
+          <button class="color-btn" style="background-color: #4db6ac;" onclick="setBackgroundColor('#4db6ac')"></button>
+          <button class="color-btn" style="background-color: #43a047;" onclick="setBackgroundColor('#43a047')"></button>
+          <button class="color-btn" style="background-color: #fbc02d;" onclick="setBackgroundColor('#fbc02d')"></button>
+          <button class="color-btn" style="background-color: #e53935;" onclick="setBackgroundColor('#e53935')"></button>
+          <button class="clear-btn" onclick="clearBackgroundColor()">Clear</button>
+        </div>
+      </div>
+
+      <div class="account-plan"> Your Sublet Form: </div> <!-- add a tag that shows the acount plan-->
+
+
+
+
+
+    </div>
+
+
+
+</body>

@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Pure CSS Tabs With Indicator</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Affordability Calculator</title>
   <link rel="stylesheet" href="CSS/Gobal_Page.css" />
-  <link rel="stylesheet" href="CSS/Menu_Bar.css" />
+  <link rel="stylesheet" href="CSS/Menu_Bar.css" /> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.3/rangeslider.min.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.3/rangeslider.min.js"></script>
 </head>
+
+</head>
+
 <body>
 
   <label for="menuToggle">
@@ -111,9 +115,9 @@
 <div style="height: 5px;"></div>
 
 <hr>
-<!-- 
-</head> -->
-<!-- <body> -->
+
+</head>
+<body>
 
   <div class="notification-box">
     <span class="notification-count"></span>
@@ -204,18 +208,67 @@
     </div>
   </div>
 
-  <div class="header-photo">
+  <!--  lower section-->
+
+  <div class="header">
     <img src="Photos/Background_AFC_Photo.png" alt="Logo" class="header-image">
-    <div class="header-photo-text">
-      <h1>Discover Your New Apartment Here</h1>
+    <div class="header-text">
+      <h1>Affordability Calculator</h1>
+      <h2>How much can you afford?</h2>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="left-panel">
+      <h3>How To Calculate Monthly Rent</h3>
+      <p>Most landlords primarily look for tenants who spend less than 30% of their gross income on rent. To calculate
+        the rent that's right for you, start by finding 30% of your pre-tax income. For example: If you make $30,000
+        before taxes (or $2,500 per month), you should try to spend no more than $750 per month on rent.</p>
+
+      <h3>What is the 50/30/20 rule?</h3>
+      <ul>
+        <li><strong>50%</strong> To Needs</li>
+        <p>To ensure that essential expenses, like housing, food, transportation, utilities, insurance, and minimum debt
+          payments, are covered. </p>
+        <li><strong>30%</strong> To Wants</li>
+        <p>To allow for discretionary spending on non-essential items and activities that enhance quality of life, such
+          as entertainment, dining out, hobbies, and vacations.</p>
+        <li><strong>20%</strong> To Savings</li>
+        <p>To build financial security by allocating funds towards emergency savings, retirement contributions, debt
+          reduction, and investments.</p>
+
+
+      </ul>
 
     </div>
+
+    <div class="right-panel calculator-panel">
+      <h3>Calculate Rent</h3>
+      <div class="form-box">
+        <label>Monthly Income
+          <input type="number" id="incomeInput" placeholder="e.g. 5000" required />
+        </label>
+      </div>
+
+      <div class="form-box">
+        <label>Rent Budget: </label>
+        <span id="percentageDisplay" class="percentage-display">30%</span>
+
+        <input type="range" id="percentageSlider" min="10" max="50" value="30" />
+      </div>
+
+      <p>Your estimated rent:</p>
+      <h2 id="rentOutput" class="rent-budget">$0 / Month</h2>
+
+      <canvas id="budgetChart" width="100" height="100"></canvas>
+    </div>
+  </div>
   </div>
 
   <style>
 
-
-    .header-photo {
+    .header {
       position: relative;
       width: 100%;
       height: 300px;
@@ -231,9 +284,9 @@
       display: block;
     }
 
-    .header-photo-text {
+    .header-text {
       position: absolute;
-      top: 30%;
+      top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
@@ -243,688 +296,143 @@
 
     }
 
-    .header-photo-text h1 {
+    .header-text h1 {
       font-size: 40px;
       margin: 0;
     }
 
-    </style>
+    .header-text h2 {
+      font-weight: bolder;
+      font-size: 24px;
+      margin-top: 10px;
+      z-index: 1000;
+    }
 
+    .header-text h1,
+    .header-text h2 {
+      background: none;
+      background-color: transparent;
+    }
+    .top-content {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 30pt;
+      font-weight: bold;
+    }
 
-<!-- search bar -->
-<!-- search bar -->
-<div class="animated-search-container">
-  <div class="animated-search-wrapper">
-    <input type="text" id="searchInput" placeholder="" required />
+    .logo {
+      gap: 10px;
+      position: relative;
 
-    <ul class="animated-label">
-      <li data-char="s">s</li>
-      <li data-char="e">e</li>
-      <li data-char="a">a</li>
-      <li data-char="r">r</li>
-      <li data-char="c">c</li>
-      <li data-char="h">h</li>
-    </ul>
-  </div>
-</div>
+      height: 70px;
+    }
 
-<style>
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
 
-  @import url('https://fonts.googleapis.com/css2?family=Knewave&display=swap');
-
-  .animated-search-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: -90px;
-  }
-
-  .animated-search-wrapper {
-    width: 100%;
-    max-width: 300px;
-    position: relative;
-    font-family: 'Knewave', cursive;
-  }
-
-  .animated-search-wrapper input {
-    width: 100%;
-    padding: 15px;
-    background-color: white;
-    border: 2px solid black;
-    color: #111;
-    font-size: 15px;
-    box-shadow: 3px 1px 0px 2px, 0px -1px 0px 2px rgba(0, 0, 0, 0.25);
-    height: 30px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-family: 'Knewave', cursive;
-  }
-
-  .animated-search-wrapper input:focus,
-  .animated-search-wrapper input:valid {
-    outline: none;
-  }
-
-  .animated-search-wrapper input:focus ~ .animated-label li::before,
-  .animated-search-wrapper input:valid ~ .animated-label li::before {
-    filter: blur(20px);
-    transform: translate(0, -35px) rotate(-210deg);
-  }
-
-  .animated-search-wrapper input:focus ~ .animated-label li::after,
-  .animated-search-wrapper input:valid ~ .animated-label li::after {
-    filter: blur(0);
-    transform: scale(1) rotate(0);
-  }
-
-  .animated-label {
-    position: absolute;
-    top: 38px;
-    left: -4px;
-    padding-left: 22px;
-    list-style: none;
-    display: flex;
-    pointer-events: none;
-    transition: top 0.3s ease;
-    margin: 0;
-  }
-
-  .animated-label li {
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: transparent;
-    position: relative;
-    pointer-events: none;
-    transition: 500ms ease-in-out;
-  }
-
-  .animated-label li::selection {
-    color: transparent;
-  }
-
-  .animated-label li::before,
-  .animated-label li::after {
-    color: black;
-    position: absolute;
-    transition: 500ms ease-in-out;
-  }
-
-  .animated-label li::before {
-    top: -25px;
-  }
-
-  .animated-label li::after {
-    top: -70px;
-    transform: scale(0) rotate(210deg);
-    filter: blur(20px);
-    color: #000000;
-  }
-
-  .animated-label li[data-char="s"]::before {
-    content: 's';
-    transition-delay: 200ms;
-  }
-
-  .animated-label li[data-char="s"]::after {
-    content: 's';
-    left: 12px;
-    transition-delay: 600ms;
-  }
-
-  .animated-label li[data-char="e"]::before {
-    content: 'e';
-    transition-delay: 400ms;
-  }
-
-  .animated-label li[data-char="e"]::after {
-    content: 'e';
-    left: 24px;
-    transition-delay: 800ms;
-  }
-
-  .animated-label li[data-char="a"]::before {
-    content: 'a';
-    transition-delay: 600ms;
-  }
-
-  .animated-label li[data-char="a"]::after {
-    content: 'a';
-    left: 36px;
-    transition-delay: 1000ms;
-  }
-
-  .animated-label li[data-char="r"]::before {
-    content: 'r';
-    transition-delay: 800ms;
-  }
-
-  .animated-label li[data-char="r"]::after {
-    content: 'r';
-    left: 48px;
-    transition-delay: 1200ms;
-  }
-
-  .animated-label li[data-char="c"]::before {
-    content: 'c';
-    transition-delay: 1000ms;
-  }
-
-  .animated-label li[data-char="c"]::after {
-    content: 'c';
-    left: 60px;
-    transition-delay: 1400ms;
-  }
-
-  .animated-label li[data-char="h"]::before {
-    content: 'h';
-    transition-delay: 1200ms;
-  }
-
-  .animated-label li[data-char="h"]::after {
-    content: 'h';
-    left: 72px;
-    transition-delay: 1600ms;
-  }
-
-  @media (max-width: 768px) {
-      .animated-search-wrapper {
-    width: 100%;
-    max-width: 200px;
-    position: relative;
-    font-family: 'Knewave', cursive;
-    
-  }
-    
-  }
-</style>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const input = document.getElementById('searchInput');
-
-    input.addEventListener('keydown', function (event) {
-      if (event.key === 'Enter') {
-        event.preventDefault(); // prevent form submission
-        const value = input.value.trim();
-
-        if (value) {
-          // Log the value (for debug)
-          console.log("Redirecting with query:", value);
-
-          // Redirect with search query
-          window.location.href = `All_Listings_Page.html?query=${encodeURIComponent(value)}`;
-        } else {
-          alert('Please enter a search term.');
-        }
-      }
-    });
-  });
-</script>
-
-
-
-
-
-<!-- Sublet and Apartments -->
-
-  <style>
-    @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway:300,400');
-
-    body {
-      background: white;
-      font-family: "Raleway", sans-serif;
-      margin: 0;
-      padding: 0;
     }
 
     h1 {
-      text-align: center;
-      color: var(--menu-color);
-      /* font-weight: bolder; */
-      padding: 40px 0 20px 0;
-      margin: 0;
-    }
-
-    .tabs {
-      position: relative;
-      width: 80%;
-      min-width: 200px;
-      max-width: 1500px;
-      margin: 0 auto;
-      background: white;
-      border-radius: 5px;
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
-                  0 10px 10px rgba(0, 0, 0, 0.22);
-      padding: 40px 30px 60px;
-    }
-
-    .tabs input[name="tab-control"] {
-      display: none;
-    }
-
-    .tabs ul {
       display: flex;
-      justify-content: space-between;
-      list-style: none;
-      padding: 0;
-      margin: 0 0 20px;
+      justify-content: center;
+      /* horizontally center content */
+      align-items: center;
+      /* vertically center if there's height */
+      background-color: white;
+      /* optional: for visibility */
     }
 
-    .tabs ul li {
-      width: 50%;
-      text-align: center;
+    h2 {
+      display: flex;
+      justify-content: center;
+      /* horizontally center content */
+      align-items: center;
+      /* vertically center if there's height */
+      background-color: white;
+      /* optional: for visibility */
     }
 
-    .tabs ul li label {
-      display: block;
-      cursor: pointer;
-      color: #b3ccf9;
-      font-family: "Montserrat", sans-serif;
-      font-weight: bold;
-      font-size: 18px;
-      transition: color 0.2s ease-in-out;
-      user-select: none;
-    }
-
-    .tabs .slider {
-      position: relative;
-      width: 50%;
-      height: 4px;
-      background: transparent;
-      transition: transform 0.3s ease-in-out;
-    }
-
-    .tabs .slider .indicator {
-      width: 50px;
-      height: 4px;
-      background: var(--menu-color);
-      margin: 0 auto;
-      border-radius: 2px;
-    }
-
-    .tabs .content {
-      margin-top: 20px;
-    }
-
-    .tabs .content section {
-      display: none;
-      animation: fadeIn 0.3s ease-in-out;
-      line-height: 1.5;
-    }
-
-    .tabs .content section h2 {
-      margin-top: 0;
-      color: var(--menu-color);
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(5%);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0%);
-      }
-    }
-
-    /* Tab logic for 2 tabs */
-    #tab1:checked ~ ul li:nth-child(1) label {
-      color: var(--menu-color);
-    }
-
-    #tab1:checked ~ .slider {
-      transform: translateX(0%);
-    }
-
-    #tab1:checked ~ .content section:nth-child(1) {
-      display: block;
-    }
-
-    #tab2:checked ~ ul li:nth-child(2) label {
-      color: var(--menu-color);
-    }
-
-    #tab2:checked ~ .slider {
-      transform: translateX(100%);
-    }
-
-    #tab2:checked ~ .content section:nth-child(2) {
-      display: block;
-    }
-
-  </style>
-<!-- </head>
-<body> -->
-
-<h1>Trending Apartments and Sublets</h1>
-<div class="tabs">
-  <input type="radio" id="tab1" name="tab-control" checked>
-  <input type="radio" id="tab2" name="tab-control">
-
-  <ul>
-    <li><label for="tab1">Apartments</label></li>
-    <li><label for="tab2">Sublets</label></li>
-  </ul>
-
-  <div class="slider"><div class="indicator"></div></div>
-
-  <div class="content">
-    <section>
-
-      <p>No Apartments Available</p>
-
-    </section>
-    <section>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-  <style>
-    /* body {
-      font-family: 'Inter', sans-serif;
-      background: #f0f2f5;
-      margin: 0;
+    .left-panel {
+      flex: 1;
+      min-width: 300px;
+      background: #f9f9f9;
       padding: 20px;
-    } */
-.grid-wrapper {
-  display: flex;
-  justify-content: center;
-  padding: 0 20px;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-  max-width: 1200px;    /* Controls centering and prevents full stretch */
-  width: 100%;
-
-}
-    .listing-card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      cursor: pointer;
+      border-radius: 10px;
     }
 
-
-    .listing-image img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      background: #eee;
+    .rangeslider {
+      background: linear-gradient(to right, #1abc3a 30%, #fbca02 50%, #b91907 80%);
+      height: 14px;
+      border-radius: 10px;
     }
 
-    .listing-content {
-      padding: 16px;
+    .calculator-panel input[type="number"],
+    .calculator-panel input[type="text"] {
+      width: 20%;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 20px;
     }
 
-    .listing-content h2 {
-      font-size: 18px;
-      margin: 0 0 8px;
+    .calculator-panel {
+      flex: 1;
+      min-width: 200px;
+      background-color: #fff;
+      padding: 25px 20px;
+      border-top: 5px solid var(--menu-color);
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
-    .listing-content p {
-      margin: 4px 0;
-      font-size: 14px;
+    .rangeslider__handle {
+      width: 28px;
+      height: 28px;
+      background: #FFF;
+      top: -7px;
+      border-radius: 50%;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+      position: absolute;
+      transition: background 0.2s ease;
     }
 
-    .grid-wrapper {
-  max-width: 1200px;    /* Optional: controls overall width */
-  margin: 0 auto;       /* This centers the wrapper */
-  padding: 0 20px;      /* Optional: adds space on small screens */
-}
+    .rangeslider__fill {
+      background: transparent;
+    }
+
+    .budget-breakdown li {
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+
+    h3 {
+      font-size: 1.8em;
+      margin-top: 20px;
+      color: #444;
+    }
+
+    .percentage-display {
+      font-weight: bold;
+    }
+
+    .budget-breakdown {
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .chart-section h4 {
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
   </style>
- <div class="listings-container">
-<div class="grid-wrapper">
-  <div id="listing-grid" class="grid-container"></div>
-</div>
 
-<script>
-  const listings = [
-    {
-      apartmentName: "The Equestrian At Pelham Parkway",
-      address: "1680 Pelham S, Bronx, NY 10461",
-      bedrooms: "1",
-      bathroom: "1",
-      rent: "1",
-      start: "2025-05-10",
-      end: "2025-06-24",
-      photoPath: "",
-      available: "yes",
-      parkingOutdoor: "yes",
-      parkingIndoor: "no",
-      parkingPublic: "no",
-      parkingOther: "yes",
-      kitchenMicrowave: "yes",
-      kitchenFridge: "yes",
-      kitchenOven: "yes",
-      kitchenGrill: "yes",
-      kitchenDishwasher: "yes",
-      kitchenPantry: "no",
-      furnished: "yes",
-      hasWasher: "no",
-      hasPatio: "no",
-      hasCloset: "yes",
-      hasTub: "yes",
-      hasAC: "yes",
-      hasHeat: "yes",
-      hasSecurity: "yes",
-      hasLaundry: "no",
-      hasElevator: "no",
-      hasAccess: "no",
-      hasControlledAccess: "no",
-      hasBikeStorage: "no",
-      hasCourtyard: "no",
-      hasWindow: "yes",
-      hasGym: "no",
-      hasEthernet: "yes"
-    },
-    {
-      apartmentName: "The Crows Nest",
-      address: "66 lockwood ln Boxford Mass ",
-      bedrooms: "1",
-      bathroom: "1",
-      rent: "1",
-      start: "2025-05-10",
-      end: "2025-06-24",
-      photoPath: "",
-      available: "yes",
-      parkingOutdoor: "yes",
-      parkingIndoor: "no",
-      parkingPublic: "no",
-      parkingOther: "yes",
-      kitchenMicrowave: "yes",
-      kitchenFridge: "yes",
-      kitchenOven: "yes",
-      kitchenGrill: "yes",
-      kitchenDishwasher: "yes",
-      kitchenPantry: "no",
-      furnished: "yes",
-      hasWasher: "no",
-      hasPatio: "no",
-      hasCloset: "yes",
-      hasTub: "yes",
-      hasAC: "yes",
-      hasHeat: "yes",
-      hasSecurity: "yes",
-      hasLaundry: "no",
-      hasElevator: "no",
-      hasAccess: "no",
-      hasControlledAccess: "no",
-      hasBikeStorage: "no",
-      hasCourtyard: "no",
-      hasWindow: "yes",
-      hasGym: "no",
-      hasEthernet: "yes"
-    },{
-      apartmentName: "The Chicken Coop",
-      address: "17 Topsfield Rd, Wenham, MA 01984",
-      bedrooms: "1",
-      bathroom: "1",
-      rent: "1",
-      start: "2025-05-10",
-      end: "2025-06-24",
-      photoPath: "",
-      available: "yes",
-      parkingOutdoor: "yes",
-      parkingIndoor: "no",
-      parkingPublic: "no",
-      parkingOther: "yes",
-      kitchenMicrowave: "yes",
-      kitchenFridge: "yes",
-      kitchenOven: "yes",
-      kitchenGrill: "yes",
-      kitchenDishwasher: "yes",
-      kitchenPantry: "no",
-      furnished: "yes",
-      hasWasher: "no",
-      hasPatio: "no",
-      hasCloset: "yes",
-      hasTub: "yes",
-      hasAC: "yes",
-      hasHeat: "yes",
-      hasSecurity: "yes",
-      hasLaundry: "no",
-      hasElevator: "no",
-      hasAccess: "no",
-      hasControlledAccess: "no",
-      hasBikeStorage: "no",
-      hasCourtyard: "no",
-      hasWindow: "yes",
-      hasGym: "no",
-      hasEthernet: "yes"
-    },
-    {
-      apartmentName: "The Jayden Apartments",
-      address: "7 Dearborn Rd, Peabody, MA 01960",
-      bedrooms: "1",
-      bathroom: "1",
-      rent: "1",
-      start: "2025-05-10",
-      end: "2025-06-24",
-      photoPath: "",
-      available: "yes",
-      parkingOutdoor: "yes",
-      parkingIndoor: "no",
-      parkingPublic: "no",
-      parkingOther: "yes",
-      kitchenMicrowave: "yes",
-      kitchenFridge: "yes",
-      kitchenOven: "yes",
-      kitchenGrill: "yes",
-      kitchenDishwasher: "yes",
-      kitchenPantry: "no",
-      furnished: "yes",
-      hasWasher: "no",
-      hasPatio: "no",
-      hasCloset: "yes",
-      hasTub: "yes",
-      hasAC: "yes",
-      hasHeat: "yes",
-      hasSecurity: "yes",
-      hasLaundry: "no",
-      hasElevator: "no",
-      hasAccess: "no",
-      hasControlledAccess: "no",
-      hasBikeStorage: "no",
-      hasCourtyard: "no",
-      hasWindow: "yes",
-      hasGym: "no",
-      hasEthernet: "yes"
-    }
-  ];
-
-  const grid = document.getElementById('listing-grid');
-
-  listings.forEach(listing => {
-    const {
-      apartmentName, address, rent, bedrooms, bathroom, start, end, photoPath
-    } = listing;
-
-    // const photoPath = listing.photoPaths?.[0]; // grab first image path, or undefined
-    // const imageSrc = photoPath || "/Photos/Boston_Logo_White.png";
-
-const imageSrc = photoPath || "https://placehold.co/600x400/000000/FFF";
-
-
-
-    const card = `
-      <div class="listing-card">
-        <div class="listing-image">
-          <img src="${imageSrc}" alt="${apartmentName}">
-        </div>
-        <div class="listing-content">
-          <h2>${apartmentName} - $${rent}/mo</h2>
-          <p><strong>Address:</strong> ${address}</p>
-          <p><strong>${bedrooms} Bed</strong> | <strong>${bathroom} Bath</strong></p>
-          <p><strong>Available:</strong> ${start} to ${end}</p>
-        </div>
-      </div>
-    `;
-
-    const wrapper = document.createElement("div");
-    wrapper.innerHTML = card;
-
-    const cardElement = wrapper.firstElementChild;
-    cardElement.addEventListener("click", () => {
-      localStorage.setItem("selectedListing", JSON.stringify(listing));
-      window.location.href = "listing_detail.html";
-    });
-
-    grid.appendChild(cardElement);
-  });
-
-</script>
-    </section>
-  </div>
- <div class="hover-underline" onclick="location.href='All_Listings_Page.html'">View More</div>
-</div>
-</div>
-
-
-<!-- View more button -->
-
-  <style>
-
-.hover-underline {
-  font-size: 1.5rem;
-  color: black;
-  position: relative;
-  display: block;
-  width: fit-content; /* or a fixed width like 200px */
-  margin: 0 auto;
-  top: 20pt;
-}
-
-
-.hover-underline::after,
-.hover-underline::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(to right, #03355f, #75fdfd);
-  bottom: -5px;
-  left: 0;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.4s ease-out;
-}
-
-.hover-underline::before {
-  top: -5px;
-  transform-origin: left;
-}
-
-.hover-underline:hover::after,
-.hover-underline:hover::before {
-  transform: scaleX(1);
-}
-
-  </style>
 
 <!-- Footer -->
+
 
 <style>
     .main {
@@ -1021,7 +529,7 @@ const imageSrc = photoPath || "https://placehold.co/600x400/000000/FFF";
 
     @keyframes bubble-move {
       0% {
-        bottom: -1rem;
+        bottom: -2rem;
       }
       100% {
         bottom: var(--distance, 10rem);
@@ -1029,7 +537,7 @@ const imageSrc = photoPath || "https://placehold.co/600x400/000000/FFF";
     }
   </style>
 </head>
-<b>
+<body>
   <main class="main">
     
   </main>
@@ -1095,34 +603,10 @@ const imageSrc = photoPath || "https://placehold.co/600x400/000000/FFF";
     }
   </script>
 
-  <script>
-  const searchInput = document.getElementById("searchInput");
-
-  searchInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-      const location = searchInput.value.trim();
-      if (location) {
-        localStorage.setItem("mapSearchQuery", location);
-        window.location.href = `All_Listings_Page.html?query=${encodeURIComponent(value)}`;
-
-      }
-    }
-  });
-</script>
-
-</body>
 
 
-
-
-<!-- Genreal Script  -->
-
-
-
-
-
-
-    <script>
+  <!-- Visualization Logic -->
+      <script>
       // Menu Toggle
       document.addEventListener("DOMContentLoaded", function () {
         const menuToggle = document.getElementById("menuToggle");
@@ -1220,4 +704,118 @@ const imageSrc = photoPath || "https://placehold.co/600x400/000000/FFF";
         }
       });
     </script>
+
+    <script>
+      // Affordability Chart Logic
+      document.addEventListener("DOMContentLoaded", () => {
+        const incomeInput = document.getElementById("incomeInput");
+        const percentageSlider = document.getElementById("percentageSlider");
+        const percentageDisplay = document.getElementById("percentageDisplay");
+        const rentOutput = document.getElementById("rentOutput");
+        const ctx = document.getElementById("budgetChart").getContext("2d");
+
+        const chartData = {
+          labels: ['Needs (50%)', 'Wants (30%)', 'Savings (20%)'],
+          datasets: [{
+            data: [0, 0, 0],
+            backgroundColor: ['#3271a5', '#70b5ee', '#767a7c']
+          }]
+        };
+
+        const budgetChart = new Chart(ctx, {
+          type: 'pie',
+          data: chartData,
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { position: 'bottom' },
+              title: { display: true, text: 'Budget Breakdown' }
+            }
+          }
+        });
+
+        function updateVisualization() {
+          const income = parseFloat(incomeInput.value);
+          const percentage = parseInt(percentageSlider.value);
+          percentageDisplay.textContent = `${percentage}%`;
+
+          if (!isNaN(income)) {
+            const rent = Math.round((income * percentage) / 100);
+            rentOutput.textContent = `$${rent.toLocaleString()} / Month`;
+
+            chartData.datasets[0].data = [
+              Math.round(income * 0.5),
+              Math.round(income * 0.3),
+              Math.round(income * 0.2)
+            ];
+          } else {
+            rentOutput.textContent = `$0 / Month`;
+            chartData.datasets[0].data = [0, 0, 0];
+          }
+          budgetChart.update();
+        }
+
+        incomeInput.addEventListener("input", updateVisualization);
+        percentageSlider.addEventListener("input", updateVisualization);
+
+        // Initialize rangeslider
+        $(function () {
+          const $slider = $('#percentageSlider');
+
+          $slider.rangeslider({
+            polyfill: false,
+            onInit: function () {
+              const value = $slider.val();
+              const color = getGradientColor(value);
+              $('.rangeslider__handle').css('background', color);
+              $('#percentageDisplay').text(`${value}%`);
+              updateVisualization();
+            },
+            onSlide: function (pos, value) {
+              const color = getGradientColor(value);
+              $('.rangeslider__handle').css('background', color);
+              $('#percentageDisplay').text(`${value}%`);
+              updateVisualization();
+            }
+          });
+
+          $slider.on('input', function () {
+            const value = this.value;
+            const color = getGradientColor(value);
+            $('.rangeslider__handle').css('background', color);
+            $('#percentageDisplay').text(`${value}%`);
+            updateVisualization();
+          });
+        });
+
+        function hexToRgb(hex) {
+          const bigint = parseInt(hex.replace('#', ''), 16);
+          return { r: (bigint >> 16) & 255, g: (bigint >> 8) & 255, b: bigint & 255 };
+        }
+
+        function interpolateColor(color1, color2, factor) {
+          const c1 = hexToRgb(color1);
+          const c2 = hexToRgb(color2);
+          return `rgb(
+      ${Math.round(c1.r + (c2.r - c1.r) * factor)},
+      ${Math.round(c1.g + (c2.g - c1.g) * factor)},
+      ${Math.round(c1.b + (c2.b - c1.b) * factor)}
+    )`;
+        }
+
+        function getGradientColor(value) {
+          if (value <= 30) {
+            return interpolateColor('#1abc3a', '#fbca02', (value - 10) / 20);
+          } else {
+            return interpolateColor('#fbca02', '#b91907', (value - 30) / 20);
+          }
+        }
+      });
+    </script>
+
+
+
+
+</body>
+
 </html>

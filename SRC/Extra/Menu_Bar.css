@@ -184,16 +184,14 @@ input{
     justify-content: center; /* Horizontally center the text */
     z-index: 1; /* Ensures it's above the image */
     padding: 0 20px;
+    gap: 10px;
+}
+.logo {
+    position: relative;
+    top: 8px;
+    height: 40px;
 }
 
-.top-strip h2 {
-    margin: 0;
-    font-size: 30px; /* Adjust the font size as needed */
-    text-transform: uppercase;
-    z-index: 10px;
-     /* Optional */
-       
-}
 .overlay-text {
     position: absolute;
     top: 30%; /* Centers vertically */
@@ -214,12 +212,10 @@ input{
     top: 5px;
     right: 20px;
     z-index: 1001; /* Above the image and top strip */
-    
 }
 
 .header-logout button{
-    font-size: 10pt;
-    font-weight: bold;
+
     box-sizing: border-box;
     padding: 10px;
     align-items: center;
@@ -241,8 +237,6 @@ input{
 }
 
 .header-subset button{
-    font-size: 10pt;
-    font-weight: bold;
 
     box-sizing: border-box;
     padding: 10px;

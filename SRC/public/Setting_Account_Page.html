@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="CSS/Gobal_Page.css">
+  <link rel="stylesheet" href="CSS/Setting_Page.css">
+  <title>Sublet Form</title>
+</head>
+
+<body>
+  <div class="form-container">
+
+    <div class="outer" onclick="window.history.back();">
+      <div class="inner">
+        <label>Back</label>
+      </div>
+    </div>
+
+    <div class="form-intro">
+      <h1>SETTINGS</h1>
+      <a href="Setting_Page.html">
+        <button>General</button>
+      </a>
+      <a href="Setting_Account_Page.html">
+        <button>Account</button>
+      </a>
+
+    </div>
+
+    <div class="form-box">
+      <label for="photo">Upload Photo(s) Here</label><br>
+      <input type="file" id="photo" name="files" multiple accept="photo/*">
+
+
+      <label>First Name<br>
+        <input type="text" id="First_Name" name="User_Name" required>
+      </label><br>
+
+      <label>Username<br>
+        <input type="email" id="User_Name" name="Email" required>
+      </label>
+
+      <label>Current Email<br>
+        <input type="text" id="email" name="User_Name" required>
+      </label><br>
+      <button>Change Password</button>
+      <button>Close Account</button>
+    </div>
+
+    <div class="pricing-table">
+      <h2> Change Plan </h2> <!-- Make a box next to saying your plan-->
+
+      <!-- make javascript saying that if you do not have the plus plan show it:-->
+      <div class="pricing-card basic">
+        <h3>Basic</h3>
+        <h1>Free</h1>
+        <ul>
+          <li>✔ Your Text Here</li>
+          <li>❌ Sample Text Here</li>
+          <li>❌ Your Sample Text Here</li>
+          <li>✔ Your Text Here</li>
+          <li>❌ Your Text Input</li>
+        </ul>
+        <button>Buy Now</button>
+      </div>
+
+      <div class="pricing-card standard">
+        <h3>Plus</h3>
+        <h1>$5 monthly</h1>
+        <ul>
+          <li>✔ Your Text Here</li>
+          <li>❌ Sample Text Here</li>
+          <li>✔ Your Sample Text Here</li>
+          <li>✔ Your Text Here</li>
+          <li>❌ Your Text Input</li>
+        </ul>
+        <button>Buy Now</button>
+      </div>
+    </div>
+</body>

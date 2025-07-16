@@ -1,17 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Pure CSS Tabs With Indicator</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Affordability Calculator</title>
+
+
+  <!-- External Stylesheets -->
   <link rel="stylesheet" href="CSS/Gobal_Page.css" />
   <link rel="stylesheet" href="CSS/Menu_Bar.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+  <title>Zillow-style Search Bar</title>
+
+  
+
+  
+  <style>
+/* Layout container */
+/* ====================================
+   SEARCH BAR WRAPPER
+==================================== */
+.search-bar-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  max-width: 85%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  position: relative;
+  z-index: 1;
+}
+
+.location-input {
+  flex: 1 1 50px;
+  padding: 10px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* ====================================
+   BUTTON STYLES
+==================================== */
+.filter-button {
+  padding: 10px 14px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.filter-button:hover,
+.icon-button:hover {
+  background-color: #e8f0fe;
+}
+
+.save-search,
+.apply-button {
+  background-color: #0074e8;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  width: 100%;
+  font-size: 16px;
+}
+
+.save-search:hover,
+.apply-button:hover {
+  background-color: #005fd0;
+}
+
+/* ====================================
+   DROPDOWN BASE
+==================================== */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-panel {
+  display: none;
+  position: absolute;
+  top: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  padding: 20px;
+  min-width: 280px;
+  max-width: 350px;
+  z-index: 200;
+}
+
+.dropdown.show .dropdown-panel {
+  display: block;
+}
+
+/* Special Offset for Dropdown Types */
+.dropdown-housing .dropdown-panel {
+  transform: translateX(-160px);
+}
+
+.all-filters-dropdown .dropdown-panel {
+  transform: translateX(-130px);
+}
+
+/* ====================================
+   SECTION STYLING
+==================================== */
+.section {
+  margin-bottom: 20px;
+}
+
+.section h4 {
+  font-size: 14px;
+  color: #5a6a7b;
+  font-weight: 600;
+  margin: 0 0 10px;
+  padding: 6px 0;
+  border-top: 1px solid #f0f0f0;
+}
+
+.section:first-child h4 {
+  border-top: none;
+}
+
+/* ====================================
+   PRICE RANGE
+==================================== */
+.price-range-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.price-input {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.price-input label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 6px;
+}
+
+.price-input select {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  appearance: none;
+  background: #f9f9f9 url("data:image/svg+xml,%3Csvg fill='gray' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") no-repeat right 10px center;
+  background-size: 12px;
+}
+
+.dash {
+  padding-bottom: 6px;
+  font-size: 18px;
+  color: #444;
+}
+
+/* ====================================
+   TOGGLE GROUPS
+==================================== */
+.grid-toggle {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 10px 0 16px;
+}
+
+.toggle-button {
+  flex: 1 1 50px;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  text-align: center;
+}
+
+.toggle-button.selected {
+  border-color: #0074e8;
+  background-color: #f0f7ff;
+  font-weight: 600;
+}
+
+.toggle-button:hover {
+  background-color: #f3f8ff;
+}
+
+/* ====================================
+   CHECKBOX
+==================================== */
+.checkbox-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  margin: 10px 0 16px;
+}
+
+.checkbox-line input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #0074e8;
+}
+
+/* ====================================
+   PROPERTY TYPE CARDS
+==================================== */
+.property-type-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 10px 0;
+}
+
+.property-type-card {
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: white;
+}
+
+.property-type-card.selected {
+  border-color: #0074e8;
+  background: #f0f7ff;
+}
+
+.property-type-card img {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 8px;
+  filter: grayscale(100%);
+}
+
+.property-type-card.selected img {
+  filter: none;
+}
+
+.property-type-card span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #222;
+}
+
+.property-type-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #eee;
+}
+
+.clear-button,
+.done-button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: #0074e8;
+  cursor: pointer;
+}
+
+.clear-button:hover,
+.done-button:hover {
+  text-decoration: underline;
+}
+
+/* ====================================
+   MOBILE RESPONSIVENESS
+==================================== */
+@media (max-width: 768px) {
+  .dropdown-panel {
+    left: 0;
+    right: 0;
+    transform: none !important;
+    width: 80vw;
+    max-width: none;
+    margin: 0 auto;
+    border-radius: 12px;
+  }
+
+  .search-bar-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .filter-button {
+    width: 100%;
+    text-align: left;
+  }
+
+  .grid-toggle {
+    gap: 6px;
+  }
+
+  .property-type-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+}
+
+/* OVerride of mobile */
+
+@media (max-width: 768px) {
+  .search-bar-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 100%;
+    padding: 16px;
+    gap: 12px;
+  }
+}
+
+  </style>
 </head>
 <body>
+ 
 
   <label for="menuToggle">
     <input type="checkbox" id="menuToggle">
@@ -41,7 +369,7 @@
                     <path
                         d="m136-240-56-56 296-298 160 160 208-206H640v-80h240v240h-80v-104L536-320 376-480 136-240Z" />
                 </svg>
-                <a href="Trending_Apartments_Page.html">Trending</a>
+                <a href="trending.html">Trending</a>
             </li>
       <li>
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
@@ -59,7 +387,6 @@
                         d="M80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm160-320h320v-80H240v80Zm0-120h480v-80H240v80Zm0-120h480v-80H240v80Z" />
                 </svg>
                 <a href="Messenger_Page.html" target="_top">Messages</a>
-
 
 
             </li>
@@ -100,13 +427,9 @@
 <div class="top-strip">
   <h2>
    <div class="main-logo" id="siteLogo"></div>
-
-
-
     Student APTs
   </h2>
 </div>
-
 <!-- Spacer so content below doesn't get hidden -->
 <div style="height: 5px;"></div>
 
@@ -204,480 +527,357 @@
     </div>
   </div>
 
-  <div class="header-photo">
-    <img src="Photos/Background_AFC_Photo.png" alt="Logo" class="header-image">
-    <div class="header-photo-text">
-      <h1>Discover Your New Apartment Here</h1>
+  <!-- lower -->
+ <!-- Search Bar Wrapper -->
+<div class="search-bar-wrapper">
+  <!-- Location Input -->
+ <input
+        type="text"
+        id="locationInput"
+        class="location-input"
+        placeholder="Boston, MA"
+      />
+      <button onclick="searchMap()">Search</button>
 
+
+  <!-- Price Dropdown -->
+  <div class="dropdown price-dropdown">
+    <button class="filter-button">Price ⌄</button>
+    <div class="dropdown-panel">
+      <h4>Price Range</h4>
+      <div class="price-range-row">
+        <div class="price-input">
+          <label>Minimum</label>
+          <select>
+            <option>No Min</option>
+            <option>$500</option>
+            <option>$1,000</option>
+            <option>$1,500</option>
+            <option>$2,000</option>
+          </select>
+        </div>
+        <span class="dash">–</span>
+        <div class="price-input">
+          <label>Maximum</label>
+          <select>
+            <option>No Max</option>
+            <option>$1,000</option>
+            <option>$1,500</option>
+            <option>$2,000</option>
+            <option>$2,500</option>
+          </select>
+        </div>
+      </div>
+      <button class="apply-button">Apply</button>
     </div>
   </div>
 
-  <style>
+  <!-- Beds & Baths Dropdown -->
+  <div class="dropdown">
+    <button class="filter-button">Beds & Baths ⌄</button>
+    <div class="dropdown-panel">
+      <!-- Bedrooms -->
+      <div class="section">
+        <h4>Bedrooms</h4>
+        <div class="grid-toggle" id="bedroom-options">
+          <button class="toggle-button" data-value="Studio">Studio</button>
+          <button class="toggle-button" data-value="1">1+</button>
+          <button class="toggle-button" data-value="2">2+</button>
+          <button class="toggle-button" data-value="3">3+</button>
+          <button class="toggle-button" data-value="4">4+</button>
+        </div>
+        <label class="checkbox-line">
+          <input type="checkbox" id="exact-bed-match" />
+          <span>Use exact match</span>
+        </label>
+      </div>
+
+      <!-- Bathrooms -->
+      <div class="section">
+        <h4>Bathrooms</h4>
+        <div class="grid-toggle" id="bathroom-options">
+          <button class="toggle-button selected">Any</button>
+          <button class="toggle-button">1+</button>
+          <button class="toggle-button">1.5+</button>
+          <button class="toggle-button">2+</button>
+          <button class="toggle-button">3+</button>
+        </div>
+      </div>
+
+      <button class="apply-button">Apply</button>
+    </div>
+  </div>
+
+  <!-- Home Type Dropdown -->
+  <div class="dropdown dropdown-housing">
+    <button class="filter-button">Home Type ⌄</button>
+    <div class="dropdown-panel">
+      <div class="property-type-grid">
+        <div class="property-type-card selected" data-type="apartments">
+          <img src="https://img.icons8.com/ios-filled/50/building.png" alt="Apartments" />
+          <span>Apartments</span>
+        </div>
+        <div class="property-type-card" data-type="houses">
+          <img src="https://img.icons8.com/ios-filled/50/home.png" alt="Houses" />
+          <span>Houses</span>
+        </div>
+        <div class="property-type-card" data-type="condos">
+          <img src="https://img.icons8.com/ios-filled/50/city-buildings.png" alt="Condos" />
+          <span>Condos</span>
+        </div>
+        <div class="property-type-card" data-type="townhomes">
+          <img src="https://img.icons8.com/ios-filled/50/house-with-two-windows.png" alt="Townhomes" />
+          <span>Townhomes</span>
+        </div>
+      </div>
+      <div class="property-type-footer">
+        <button class="clear-button">Clear</button>
+        <button class="done-button">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="dropdown all-filters-dropdown">
+  <button class="filter-button">All Filters ⌄</button>
+  <div class="dropdown-panel">
+    <!-- PRICE SECTION -->
+    <div class="section">
+      <h4>Price</h4>
+      <div class="price-range-row">
+        <div class="price-input">
+          <label>Minimum</label>
+          <select>
+            <option>No Min</option>
+            <option>$500</option>
+            <option>$1,000</option>
+            <option>$1,500</option>
+            <option>$2,000</option>
+          </select>
+        </div>
+        <span class="dash">–</span>
+        <div class="price-input">
+          <label>Maximum</label>
+          <select>
+            <option>No Max</option>
+            <option>$1,000</option>
+            <option>$1,500</option>
+            <option>$2,000</option>
+            <option>$2,500</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- BEDROOM SECTION -->
+    <div class="section">
+      <h4>Bedrooms</h4>
+      <div class="grid-toggle" id="bedroom-options-alt">
+        <button class="toggle-button" data-value="Studio">Studio</button>
+        <button class="toggle-button" data-value="1">1+</button>
+        <button class="toggle-button" data-value="2">2+</button>
+        <button class="toggle-button" data-value="3">3+</button>
+        <button class="toggle-button" data-value="4">4+</button>
+      </div>
+      <label class="checkbox-line">
+        <input type="checkbox" id="exact-bed-match-alt" />
+        <span>Use exact match</span>
+      </label>
+    </div>
+
+    <!-- BATHROOM SECTION -->
+    <div class="section">
+      <h4>Bathrooms</h4>
+      <div class="grid-toggle" id="bathroom-options-alt">
+        <button class="toggle-button selected">Any</button>
+        <button class="toggle-button">1+</button>
+        <button class="toggle-button">1.5+</button>
+        <button class="toggle-button">2+</button>
+        <button class="toggle-button">3+</button>
+      </div>
+    </div>
+
+    <!-- HOME TYPE SECTION -->
+    <div class="section">
+      <h4>Home Type</h4>
+      <div class="property-type-grid">
+        <div class="property-type-card selected" data-type="apartments">
+          <img src="https://img.icons8.com/ios-filled/50/building.png" alt="Apartments" />
+          <span>Apartments</span>
+        </div>
+        <div class="property-type-card" data-type="houses">
+          <img src="https://img.icons8.com/ios-filled/50/home.png" alt="Houses" />
+          <span>Houses</span>
+        </div>
+        <div class="property-type-card" data-type="condos">
+          <img src="https://img.icons8.com/ios-filled/50/city-buildings.png" alt="Condos" />
+          <span>Condos</span>
+        </div>
+        <div class="property-type-card" data-type="townhomes">
+          <img src="https://img.icons8.com/ios-filled/50/house-with-two-windows.png" alt="Townhomes" />
+          <span>Townhomes</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER ACTIONS -->
+    <div class="property-type-footer">
+      <button class="clear-button">Clear</button>
+      <button class="apply-button">Apply</button>
+    </div>
+  </div>
+</div>
+</div>
 
 
-    .header-photo {
-      position: relative;
-      width: 100%;
-      height: 300px;
-      /* Adjust height as needed */
-      margin-top: 0;
-    }
+<div class="main-layout">
+  <div class="left-pane">
+    <!-- Search bar + map -->
 
-    .header-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      /* Ensures the image covers the area */
-      display: block;
-    }
+    <div class="map-wrapper">
+<iframe
+  id="mapFrame"
+  style="border:0;"
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade"
+  allowfullscreen
+></iframe>
+    </div>
+  </div>
 
-    .header-photo-text {
-      position: absolute;
-      top: 30%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      color: black;
-      background-color: rgba(255, 255, 255, 0.392);
-      border-radius: 10px 10px 10px 10px;
-
-    }
-
-    .header-photo-text h1 {
-      font-size: 40px;
-      margin: 0;
-    }
-
-    </style>
-
-
-<!-- search bar -->
-<!-- search bar -->
-<div class="animated-search-container">
-  <div class="animated-search-wrapper">
-    <input type="text" id="searchInput" placeholder="" required />
-
-    <ul class="animated-label">
-      <li data-char="s">s</li>
-      <li data-char="e">e</li>
-      <li data-char="a">a</li>
-      <li data-char="r">r</li>
-      <li data-char="c">c</li>
-      <li data-char="h">h</li>
-    </ul>
+  <div class="right-pane">
+    <div class="grid-container" id="listing-grid"></div>
   </div>
 </div>
 
-<style>
-
-  @import url('https://fonts.googleapis.com/css2?family=Knewave&display=swap');
-
-  .animated-search-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: -90px;
-  }
-
-  .animated-search-wrapper {
-    width: 100%;
-    max-width: 300px;
-    position: relative;
-    font-family: 'Knewave', cursive;
-  }
-
-  .animated-search-wrapper input {
-    width: 100%;
-    padding: 15px;
-    background-color: white;
-    border: 2px solid black;
-    color: #111;
-    font-size: 15px;
-    box-shadow: 3px 1px 0px 2px, 0px -1px 0px 2px rgba(0, 0, 0, 0.25);
-    height: 30px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-family: 'Knewave', cursive;
-  }
-
-  .animated-search-wrapper input:focus,
-  .animated-search-wrapper input:valid {
-    outline: none;
-  }
-
-  .animated-search-wrapper input:focus ~ .animated-label li::before,
-  .animated-search-wrapper input:valid ~ .animated-label li::before {
-    filter: blur(20px);
-    transform: translate(0, -35px) rotate(-210deg);
-  }
-
-  .animated-search-wrapper input:focus ~ .animated-label li::after,
-  .animated-search-wrapper input:valid ~ .animated-label li::after {
-    filter: blur(0);
-    transform: scale(1) rotate(0);
-  }
-
-  .animated-label {
-    position: absolute;
-    top: 38px;
-    left: -4px;
-    padding-left: 22px;
-    list-style: none;
-    display: flex;
-    pointer-events: none;
-    transition: top 0.3s ease;
-    margin: 0;
-  }
-
-  .animated-label li {
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: transparent;
-    position: relative;
-    pointer-events: none;
-    transition: 500ms ease-in-out;
-  }
-
-  .animated-label li::selection {
-    color: transparent;
-  }
-
-  .animated-label li::before,
-  .animated-label li::after {
-    color: black;
-    position: absolute;
-    transition: 500ms ease-in-out;
-  }
-
-  .animated-label li::before {
-    top: -25px;
-  }
-
-  .animated-label li::after {
-    top: -70px;
-    transform: scale(0) rotate(210deg);
-    filter: blur(20px);
-    color: #000000;
-  }
-
-  .animated-label li[data-char="s"]::before {
-    content: 's';
-    transition-delay: 200ms;
-  }
-
-  .animated-label li[data-char="s"]::after {
-    content: 's';
-    left: 12px;
-    transition-delay: 600ms;
-  }
-
-  .animated-label li[data-char="e"]::before {
-    content: 'e';
-    transition-delay: 400ms;
-  }
-
-  .animated-label li[data-char="e"]::after {
-    content: 'e';
-    left: 24px;
-    transition-delay: 800ms;
-  }
-
-  .animated-label li[data-char="a"]::before {
-    content: 'a';
-    transition-delay: 600ms;
-  }
-
-  .animated-label li[data-char="a"]::after {
-    content: 'a';
-    left: 36px;
-    transition-delay: 1000ms;
-  }
-
-  .animated-label li[data-char="r"]::before {
-    content: 'r';
-    transition-delay: 800ms;
-  }
-
-  .animated-label li[data-char="r"]::after {
-    content: 'r';
-    left: 48px;
-    transition-delay: 1200ms;
-  }
-
-  .animated-label li[data-char="c"]::before {
-    content: 'c';
-    transition-delay: 1000ms;
-  }
-
-  .animated-label li[data-char="c"]::after {
-    content: 'c';
-    left: 60px;
-    transition-delay: 1400ms;
-  }
-
-  .animated-label li[data-char="h"]::before {
-    content: 'h';
-    transition-delay: 1200ms;
-  }
-
-  .animated-label li[data-char="h"]::after {
-    content: 'h';
-    left: 72px;
-    transition-delay: 1600ms;
-  }
-
-  @media (max-width: 768px) {
-      .animated-search-wrapper {
-    width: 100%;
-    max-width: 200px;
-    position: relative;
-    font-family: 'Knewave', cursive;
-    
-  }
-    
-  }
-</style>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const input = document.getElementById('searchInput');
-
-    input.addEventListener('keydown', function (event) {
-      if (event.key === 'Enter') {
-        event.preventDefault(); // prevent form submission
-        const value = input.value.trim();
-
-        if (value) {
-          // Log the value (for debug)
-          console.log("Redirecting with query:", value);
-
-          // Redirect with search query
-          window.location.href = `All_Listings_Page.html?query=${encodeURIComponent(value)}`;
-        } else {
-          alert('Please enter a search term.');
-        }
-      }
-    });
-  });
-</script>
-
-
-
-
-
-<!-- Sublet and Apartments -->
-
-  <style>
-    @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway:300,400');
-
-    body {
-      background: white;
-      font-family: "Raleway", sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-
-    h1 {
-      text-align: center;
-      color: var(--menu-color);
-      /* font-weight: bolder; */
-      padding: 40px 0 20px 0;
-      margin: 0;
-    }
-
-    .tabs {
-      position: relative;
-      width: 80%;
-      min-width: 200px;
-      max-width: 1500px;
-      margin: 0 auto;
-      background: white;
-      border-radius: 5px;
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
-                  0 10px 10px rgba(0, 0, 0, 0.22);
-      padding: 40px 30px 60px;
-    }
-
-    .tabs input[name="tab-control"] {
-      display: none;
-    }
-
-    .tabs ul {
-      display: flex;
-      justify-content: space-between;
-      list-style: none;
-      padding: 0;
-      margin: 0 0 20px;
-    }
-
-    .tabs ul li {
-      width: 50%;
-      text-align: center;
-    }
-
-    .tabs ul li label {
-      display: block;
-      cursor: pointer;
-      color: #b3ccf9;
-      font-family: "Montserrat", sans-serif;
-      font-weight: bold;
-      font-size: 18px;
-      transition: color 0.2s ease-in-out;
-      user-select: none;
-    }
-
-    .tabs .slider {
-      position: relative;
-      width: 50%;
-      height: 4px;
-      background: transparent;
-      transition: transform 0.3s ease-in-out;
-    }
-
-    .tabs .slider .indicator {
-      width: 50px;
-      height: 4px;
-      background: var(--menu-color);
-      margin: 0 auto;
-      border-radius: 2px;
-    }
-
-    .tabs .content {
-      margin-top: 20px;
-    }
-
-    .tabs .content section {
-      display: none;
-      animation: fadeIn 0.3s ease-in-out;
-      line-height: 1.5;
-    }
-
-    .tabs .content section h2 {
-      margin-top: 0;
-      color: var(--menu-color);
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(5%);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0%);
-      }
-    }
-
-    /* Tab logic for 2 tabs */
-    #tab1:checked ~ ul li:nth-child(1) label {
-      color: var(--menu-color);
-    }
-
-    #tab1:checked ~ .slider {
-      transform: translateX(0%);
-    }
-
-    #tab1:checked ~ .content section:nth-child(1) {
-      display: block;
-    }
-
-    #tab2:checked ~ ul li:nth-child(2) label {
-      color: var(--menu-color);
-    }
-
-    #tab2:checked ~ .slider {
-      transform: translateX(100%);
-    }
-
-    #tab2:checked ~ .content section:nth-child(2) {
-      display: block;
-    }
-
-  </style>
-<!-- </head>
-<body> -->
-
-<h1>Trending Apartments and Sublets</h1>
-<div class="tabs">
-  <input type="radio" id="tab1" name="tab-control" checked>
-  <input type="radio" id="tab2" name="tab-control">
-
-  <ul>
-    <li><label for="tab1">Apartments</label></li>
-    <li><label for="tab2">Sublets</label></li>
-  </ul>
-
-  <div class="slider"><div class="indicator"></div></div>
-
-  <div class="content">
-    <section>
-
-      <p>No Apartments Available</p>
-
-    </section>
-    <section>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-  <style>
-    /* body {
-      font-family: 'Inter', sans-serif;
-      background: #f0f2f5;
-      margin: 0;
-      padding: 20px;
-    } */
-.grid-wrapper {
+ <style>
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f9f9f9;
+}
+
+/* Layout wrapper */
+.main-layout {
   display: flex;
-  justify-content: center;
-  padding: 0 20px;
+  flex-direction: row;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+  flex-wrap: wrap;
+}
+
+/* Left pane: map */
+.left-pane {
+  flex: 1 1 100%;
+  max-width: 100%;
+}
+
+/* Map wrapper */
+.map-wrapper iframe {
+  width: 100%;
+  height: 400px;
+  border: 0;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Right pane: listings */
+.right-pane {
+  flex: 1 1 100%;
+  max-width: 100%;
+  padding-top: 20px;
 }
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 20px;
-  max-width: 1200px;    /* Controls centering and prevents full stretch */
+}
+
+/* Individual listing card */
+.listing-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.listing-image img {
   width: 100%;
+  height: 200px;
+  object-fit: cover;
+  background: #eee;
+}
+
+.listing-content {
+  padding: 16px;
+}
+
+.listing-content h2 {
+  font-size: 18px;
+  margin: 0 0 8px;
+}
+
+.listing-content p {
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+/* --- Responsive: stack vertically on smaller screens --- */
+@media (min-width: 796px) {
+  .main-layout {
+    flex-direction: row;
+  }
+
+  .left-pane,
+  .right-pane {
+    flex: 1;
+    max-width: 50%;
+  }
+  
+  .search-bar-wrapper button {
+  padding: 10px 20px;
+  font-size: 15px;
+  border-radius: 12px;
+}
 
 }
-    .listing-card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      cursor: pointer;
-    }
+
+@media (max-width: 796px) {
+  .main-layout {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .left-pane,
+  .right-pane {
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
+
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+
+  .search-bar-wrapper button {
+    padding: 10px 20px;
+    font-size: 12px;
+    border-radius: 12px;
+  }
 
 
-    .listing-image img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      background: #eee;
-    }
-
-    .listing-content {
-      padding: 16px;
-    }
-
-    .listing-content h2 {
-      font-size: 18px;
-      margin: 0 0 8px;
-    }
-
-    .listing-content p {
-      margin: 4px 0;
-      font-size: 14px;
-    }
-
-    .grid-wrapper {
-  max-width: 1200px;    /* Optional: controls overall width */
-  margin: 0 auto;       /* This centers the wrapper */
-  padding: 0 20px;      /* Optional: adds space on small screens */
 }
-  </style>
- <div class="listings-container">
+
+</style>
+
+<div class="listing-content">
 <div class="grid-wrapper">
   <div id="listing-grid" class="grid-container"></div>
+</div>
 </div>
 
 <script>
@@ -876,60 +1076,28 @@ const imageSrc = photoPath || "https://placehold.co/600x400/000000/FFF";
   });
 
 </script>
-    </section>
-  </div>
- <div class="hover-underline" onclick="location.href='All_Listings_Page.html'">View More</div>
-</div>
-</div>
 
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+const urlParams = new URLSearchParams(window.location.search);
+const query = urlParams.get("query");
 
-<!-- View more button -->
-
-  <style>
-
-.hover-underline {
-  font-size: 1.5rem;
-  color: black;
-  position: relative;
-  display: block;
-  width: fit-content; /* or a fixed width like 200px */
-  margin: 0 auto;
-  top: 20pt;
+if (query) {
+  const mapFrame = document.getElementById("mapFrame");
+  const encoded = encodeURIComponent(query);
+  mapFrame.src = `https://www.google.com/maps?q=${encoded}&output=embed`;
 }
 
+  });
+</script>
 
-.hover-underline::after,
-.hover-underline::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(to right, #03355f, #75fdfd);
-  bottom: -5px;
-  left: 0;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.4s ease-out;
-}
-
-.hover-underline::before {
-  top: -5px;
-  transform-origin: left;
-}
-
-.hover-underline:hover::after,
-.hover-underline:hover::before {
-  transform: scaleX(1);
-}
-
-  </style>
 
 <!-- Footer -->
 
 <style>
     .main {
       grid-area: main;
-      padding: 10rem;
+      padding: 5rem;
     }
 
     .footer {
@@ -938,7 +1106,7 @@ const imageSrc = photoPath || "https://placehold.co/600x400/000000/FFF";
       --footer-background:var(--menu-color);
       display: grid;
       position: relative;
-      min-height: 5rem;
+      min-height: 10rem;
     }
 
     .footer .bubbles {
@@ -1095,32 +1263,135 @@ const imageSrc = photoPath || "https://placehold.co/600x400/000000/FFF";
     }
   </script>
 
-  <script>
-  const searchInput = document.getElementById("searchInput");
 
-  searchInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-      const location = searchInput.value.trim();
-      if (location) {
-        localStorage.setItem("mapSearchQuery", location);
-        window.location.href = `All_Listings_Page.html?query=${encodeURIComponent(value)}`;
 
+  <!-- JS logic -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // === Dropdown toggle ===
+    document.querySelectorAll('.filter-button').forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const dropdown = e.currentTarget.closest('.dropdown');
+        const alreadyOpen = dropdown.classList.contains('show');
+
+        // Close all dropdowns
+        document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('show'));
+
+        // Open this one if it wasn't already open
+        if (!alreadyOpen) dropdown.classList.add('show');
+      });
+    });
+
+    // === Close dropdowns when clicking outside ===
+    window.addEventListener('click', (e) => {
+      if (!e.target.closest('.dropdown')) {
+        document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('show'));
+      }
+    });
+
+    // === Toggle groups ===
+    function setupToggleGroup(groupId) {
+      const buttons = document.querySelectorAll(`#${groupId} .toggle-button`);
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          buttons.forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+        });
+      });
+    }
+
+    setupToggleGroup('bedroom-options');
+    setupToggleGroup('bathroom-options');
+    setupToggleGroup('bedroom-options-alt');
+    setupToggleGroup('bathroom-options-alt');
+
+    // === "+" update on exact match ===
+    const updateExactMatch = (checkboxId, groupSelector) => {
+      const checkbox = document.getElementById(checkboxId);
+      const buttons = document.querySelectorAll(`${groupSelector} .toggle-button`);
+      if (checkbox) {
+        checkbox.addEventListener('change', () => {
+          const useExact = checkbox.checked;
+          buttons.forEach(btn => {
+            const val = btn.dataset.value;
+            btn.textContent = val === "Studio" ? "Studio" : (useExact ? val : val + "+");
+          });
+        });
+      }
+    };
+
+    updateExactMatch('exact-bed-match', '#bedroom-options');
+    updateExactMatch('exact-bed-match-alt', '#bedroom-options-alt');
+
+    // === Property type toggles ===
+    document.querySelectorAll('.property-type-card').forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('selected');
+      });
+    });
+
+    // === Clear button ===
+    const clearBtn = document.querySelector('.clear-button');
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        document.querySelectorAll('.property-type-card').forEach(card => {
+          card.classList.remove('selected');
+        });
+        document.querySelectorAll('.toggle-button.selected').forEach(btn => {
+          btn.classList.remove('selected');
+        });
+      });
+    }
+
+    // === Apply button ===
+    const applyBtn = document.querySelector('.apply-button');
+    if (applyBtn) {
+      applyBtn.addEventListener('click', () => {
+        const allFilter = document.querySelector('.all-filters-dropdown');
+        if (allFilter) allFilter.classList.remove('show');
+      });
+    }
+
+    // === Rent Dropdown (optional) ===
+    const rentDropdown = document.querySelector('.dropdown-rent');
+    if (rentDropdown) {
+      const rentButton = rentDropdown.querySelector('.filter-button');
+      if (rentButton) {
+        rentButton.addEventListener('click', () => {
+          rentDropdown.classList.toggle('show');
+          document.querySelectorAll('.dropdown-rent').forEach(d => {
+            if (d !== rentDropdown) d.classList.remove('show');
+          });
+        });
+
+        window.addEventListener('click', (e) => {
+          if (!e.target.closest('.dropdown-rent')) {
+            rentDropdown.classList.remove('show');
+          }
+        });
       }
     }
   });
 </script>
 
-</body>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const storedQuery = localStorage.getItem("mapSearchQuery");
+    if (storedQuery) {
+      const mapFrame = document.getElementById("mapFrame");
+      const encoded = encodeURIComponent(storedQuery);
+      mapFrame.src = `https://www.google.com/maps?q=${encoded}&output=embed`;
+      localStorage.removeItem("mapSearchQuery"); // optional: clear after use
+    }
+  });
+</script>
 
 
 
 
-<!-- Genreal Script  -->
-
-
-
-
-
+<!-- Menu script -->
 
     <script>
       // Menu Toggle
@@ -1220,4 +1491,25 @@ const imageSrc = photoPath || "https://placehold.co/600x400/000000/FFF";
         }
       });
     </script>
+
+<script>
+  function searchMap() {
+    const input = document.getElementById("locationInput").value;
+    if (!input) return;
+
+    const encoded = encodeURIComponent(input);
+    const mapFrame = document.getElementById("mapFrame");
+    mapFrame.src = `https://www.google.com/maps?q=${encoded}&output=embed`;
+  }
+
+  // Optional: Enter key support
+  document.getElementById("locationInput").addEventListener("keypress", (e) => {
+    if (e.key === "Enter") searchMap();
+  });
+</script>
+
+
+    
+
+</body>
 </html>

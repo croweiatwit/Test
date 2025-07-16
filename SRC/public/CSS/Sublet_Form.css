@@ -1,0 +1,263 @@
+
+.form-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  
+}
+
+/* Left Panel */
+.form-intro {
+  background-color: #3271a584;
+  width: 40%;
+  height:auto;
+  display: flexbox;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  color: black;
+  text-align: center;
+}
+
+.form-intro h2 {
+  font-size: 24pt;
+  margin: 20px 0 10px;
+}
+
+.form-intro p {
+  font-size: 14pt;
+  margin-bottom: 30px;
+}
+
+
+.avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: white;
+  object-fit: cover;
+}
+
+.arrow-button {
+  font-size: 25pt;
+  border: none;
+  background: white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+/* Right Panel */
+.form-fields {
+  width: 60%;
+  padding: 60px;
+  background-color: #f8f9fa;
+}
+
+.form-box {
+  background-color: white;
+  border: none;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  width: 100%;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 2px;
+  /*border: 1px solid #ccc;*/
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+/*
+  .question-box {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 3 columns 
+    gap: 10px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .question-box {
+  background-color: white;
+  border: none;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  width: 100%;
+}
+
+  .option-box hr {
+    margin-top: auto;
+    height: 3px;
+    background-color: black;
+    border: none;
+    width: 100%;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 2px;
+    font-weight: bold;
+  }
+  */
+/* Button styles */
+.button-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.button-group button {
+  padding: 12px 25px;
+  border: none;
+  background-color: #3271a584;
+  color: white;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.button-group button:hover {
+  background-color: var( --menu-color);
+}
+
+
+/*close button*/
+
+.outer {
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  width: 50px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.inner {
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+
+.outer label { 
+  font-size: 7pts; 
+  line-height: 4em;
+  text-transform: uppercase;
+  color: var(--menu-color);
+  transition: opacity 0.3s ease-in;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.inner::before,
+.inner::after {
+  content: '';
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  background: #D2B48C;
+  left: 0;
+  transition: all 0.3s ease-in;
+}
+
+.inner::before {
+  top: 50%;
+  transform: rotate(45deg);
+}
+
+.inner::after {
+  bottom: 44%;
+  transform: rotate(-45deg);
+}
+
+.outer:hover label {
+  opacity: 1;
+}
+
+.outer:hover .inner::before {
+  transform: rotate(0);
+  top: 0;
+}
+
+.outer:hover .inner::after {
+  transform: rotate(0);
+  bottom: 0;
+}
+
+ .form-section .form-section-label {
+    display: block;
+    margin-bottom: 2px;
+    font-weight: bold;
+    font-size: large;
+  }
+
+   .form-section .form-section-overview {
+    display: block;
+    margin-bottom: 2px;
+    font-weight: bolder;
+    font-size: larger;
+  
+  }
+
+
+@media (max-width: 796px) {
+  .form-container {
+    flex-direction: column;
+  }
+
+  .form-intro {
+    width: auto;
+    padding: 20px;
+    align-items: center;
+  }
+
+  .form-fields {
+    width: auto;
+    padding: 20px;
+  }
+
+  .avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+
+  .form-box {
+  background-color: white;
+  border: none;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  width: auto;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+input[type="file"] {
+  width: 90%;
+  padding: 10px;
+  margin-top: 2px;
+  align-items: center;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+
+
+}

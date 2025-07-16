@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Listing Details</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f0f2f5;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 24px;
+    }
+
+    .listing-image img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 8px;
+      background: #eee;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin: 16px 0 10px;
+    }
+
+    p {
+      font-size: 14px;
+      margin: 6px 0;
+    }
+
+    .section-title {
+      font-size: 18px;
+      margin-top: 24px;
+      font-weight: 600;
+    }
+
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .amenity-box {
+      background: #f9f9f9;
+      border: 1px solid #e0e0e0;
+      padding: 8px;
+      border-radius: 8px;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .back-button {
+      margin-bottom: 20px;
+      display: inline-block;
+      text-decoration: none;
+      color: #2d89ff;
+      border: 1px solid #2d89ff;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .back-button:hover {
+      background: #2d89ff;
+      color: white;
+    }
+  </style>
+
+
+<!-- heart -->
+  <style>
+
+.heart-button {
+  position: relative;
+  margin-top: 75pt;
+  margin-right: 35pt;
+  background: none;
+  border: none;
+  font-size: 35px;
+  cursor: pointer;
+  color: red;
+  z-index: 10;
+  transition: transform 0.2s ease;
+}
+
+.heart-button:hover {
+  transform: scale(1.2);
+}
+
+  </style>
+</head>
+<body>
+
+<a onclick="window.history.back();" class="back-button">← Back to Listings</a>
+
+<div class="container" id="detail-container"></div>
+
+<script>
+  const listing = JSON.parse(localStorage.getItem("selectedListing"));
+
+  const render = (label, group) => {
+    const html = group
+      .filter(i => (listing[i.key] || "").toLowerCase() === "yes")
+      .map(i => `<div class="amenity-box">${i.label}</div>`)
+      .join("");
+
+    return `
+      <div class="section-title">${label}</div>
+      <div class="amenities-grid">
+        ${html || `<div>No ${label.toLowerCase()} features listed.</div>`}
+      </div>
+    `;
+  };
+
+  const parking = [
+    { key: "parkingOutdoor", label: "Outdoor Parking" },
+    { key: "parkingIndoor", label: "Indoor Parking" },
+    { key: "parkingPublic", label: "Public Parking" },
+    { key: "parkingOther", label: "Other Parking" }
+  ];
+
+  const kitchen = [
+    { key: "kitchenMicrowave", label: "Microwave" },
+    { key: "kitchenFridge", label: "Fridge" },
+    { key: "kitchenOven", label: "Oven" },
+    { key: "kitchenGrill", label: "Grill" },
+    { key: "kitchenDishwasher", label: "Dishwasher" },
+    { key: "kitchenPantry", label: "Pantry" }
+  ];
+
+  const features = [
+    { key: "furnished", label: "Furnished" },
+    { key: "hasWasher", label: "Washer/Dryer" },
+    { key: "hasPatio", label: "Patio" },
+    { key: "hasCloset", label: "Closet" },
+    { key: "hasTub", label: "Bathtub" },
+    { key: "hasAC", label: "Air Conditioning" },
+    { key: "hasHeat", label: "Heat" },
+    { key: "hasSecurity", label: "Security" },
+    { key: "hasLaundry", label: "Laundry" },
+    { key: "hasElevator", label: "Elevator" },
+    { key: "hasAccess", label: "Access" },
+    { key: "hasControlledAccess", label: "Controlled Access" },
+    { key: "hasBikeStorage", label: "Bike Storage" },
+    { key: "hasCourtyard", label: "Courtyard" },
+    { key: "hasWindow", label: "Window" },
+    { key: "hasGym", label: "Fitness Center" },
+    { key: "hasEthernet", label: "Ethernet Port" }
+  ];
+
+  const {
+    apartmentName, address, rent, bedrooms, bathroom, start, end, photoPath
+  } = listing;
+
+  const imageSrc = photoPath || "https://placehold.co/600x400/000000/FFF";
+
+  document.getElementById("detail-container").innerHTML = `
+    <div class="listing-image">
+      <img src="${imageSrc}" alt="${apartmentName}" />
+          <button class="heart-button" onclick="toggleFavorite()" style="position: absolute; top: 16px; right: 16px;">
+      <span id="heart-icon">🤍</span>
+    </button>
+    </div>
+    <h1>${apartmentName}</h1>
+    <p><strong>Address:</strong> ${address}</p>
+    <p><strong>Rent:</strong> $${rent}/mo</p>
+    <p><strong>${bedrooms} Bed | ${bathroom} Bath</strong></p>
+    <p><strong>Available:</strong> ${start} to ${end}</p>
+
+    ${render("Parking", parking)}
+    ${render("Kitchen", kitchen)}
+    ${render("Apartment Features", features)}
+  
+        <h2>Location</h2>
+        <div class="map-container">
+          <iframe
+            id="map-frame"
+            width="100%"
+            height="400"
+            style="border:0;"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+          ></iframe>
+        </div>
+      `;
+
+      const mapFrame = document.getElementById("map-frame");
+      if (mapFrame && address) {
+        const encoded = encodeURIComponent(address);
+        mapFrame.src = `https://www.google.com/maps?q=${encoded}&output=embed`;
+      
+    }
+  </script>
+
+<!-- heart -->
+<script>
+  function toggleFavorite() {
+  const saved = JSON.parse(localStorage.getItem("savedListings") || "[]");
+  const existingIndex = saved.findIndex(item => item.address === listing.address);
+
+  if (existingIndex > -1) {
+    // Remove from saved
+    saved.splice(existingIndex, 1);
+    document.getElementById("heart-icon").textContent = "🤍";
+  } else {
+    // Add to saved
+    saved.push(listing);
+    document.getElementById("heart-icon").textContent = "❤️";
+  }
+
+  localStorage.setItem("savedListings", JSON.stringify(saved));
+}
+
+// Initialize heart icon on load
+window.addEventListener("DOMContentLoaded", () => {
+  const saved = JSON.parse(localStorage.getItem("savedListings") || "[]");
+  const isSaved = saved.some(item => item.address === listing.address);
+  document.getElementById("heart-icon").textContent = isSaved ? "❤️" : "🤍";
+});
+
+
+
+</script>
+</body>
+</html>

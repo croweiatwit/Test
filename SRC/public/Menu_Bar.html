@@ -2,175 +2,388 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu</title>
 
-    <title>Menu</title>
-    <link rel="stylesheet" href="Gobal_Page.css">
-    <link rel="stylesheet" href="Menu_Bar.css">
+  <link rel="stylesheet" href="Gobal_Page.css">
+  <link rel="stylesheet" href="Menu_Bar.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+  <!-- <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #f9f9fb;
+    }
+
+    .profile-dropdown {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      z-index: 1001;
+    }
+
+    .profile-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid #ccc;
+      object-fit: cover;
+    }
+
+    .dropdown-card {
+      display: none;
+      position: absolute;
+      top: 75px;
+      right: 0;
+      width: 260px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      padding: 16px;
+      z-index: 1000;
+    }
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .profile-header img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    .name {
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .email {
+      font-size: 12px;
+      color: gray;
+    }
+
+    .theme-toggle {
+      display: flex;
+      justify-content: space-around;
+      margin: 12px 0;
+    }
+
+    .theme-btn {
+      background: #f3f3f3;
+      border: none;
+      border-radius: 8px;
+      padding: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.2s;
+    }
+
+    .theme-btn.active,
+    .theme-btn:hover {
+      background-color: #d9e8fb;
+    }
+
+    .menu-links a {
+      display: block;
+      text-decoration: none;
+      color: #333;
+      padding: 10px 0;
+      font-size: 14px;
+    }
+
+    .menu-links a:hover {
+      background: #f5f5f5;
+      border-radius: 8px;
+      padding-left: 8px;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropbtn {
+      cursor: pointer;
+      text-decoration: none;
+      padding: 10px;
+      color: #3271a5;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      min-width: 220px;
+      z-index: 1000;
+      flex-direction: column;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 10px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .header-subset {
+      position: absolute;
+      top: 15px;
+      right: 110px;
+      z-index: 1001;
+    }
+
+    .header-subset button {
+      font-size: 10pt;
+      font-weight: bold;
+      padding: 6px 12px;
+      border-radius: 12px;
+      background-color: transparent;
+      cursor: pointer;
+    }
+
+    .header-subset button:hover {
+      background-color: #3271a5;
+      color: white;
+    }
+
+    .top-strip {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 50px;
+      background: white;
+      color: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 10px 20px;
+    }
+
+    .top-strip h2 {
+      font-size: 30pt;
+      font-weight: bolder;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      height: 75px;
+    }
+
+    hr {
+      margin-top: 70px;
+      height: 3px;
+      background-color: black;
+      border: none;
+    }
+
+    body.dark-mode {
+      background: #121212;
+      color: #e0e0e0;
+    }
+
+    body.dark-mode .dropdown-card {
+      background: #1e1e1e;
+      box-shadow: 0 8px 24px rgba(255, 255, 255, 0.05);
+    }
+
+    body.dark-mode .email {
+      color: #aaaaaa;
+    }
+
+    body.dark-mode .theme-btn {
+      background: #2c2c2c;
+      color: #e0e0e0;
+    }
+
+    body.dark-mode .theme-btn.active,
+    body.dark-mode .theme-btn:hover {
+      background-color: #3d4b5c;
+    }
+
+    body.dark-mode .menu-links a {
+      color: #e0e0e0;
+    }
+
+    body.dark-mode .menu-links a:hover {
+      background: #2a2a2a;
+    }
+
+    /* Responsive behavior */
+    @media screen and (max-width: 825px) {
+      .header-subset {
+        display: none;
+      }
+
+      .mobile-sublet-link {
+        display: block;
+      }
+    }
+
+    /* Hidden in full screen */
+    .mobile-sublet-link {
+      display: none;
+    }
+
+    .mobile-sublet-link a {
+      color: #3271a5;
+      font-weight: bold;
+    }
+
+    .mobile-sublet-link a:hover {
+      color: black;
+    }
+
+  </style> -->
 </head>
+
 <body>
 
-    <label for="menuToggle">
-        <input type="checkbox" id="menuToggle">
-        <div class="toggle">
-            <span class="top_line common"></span>
-            <span class="middle_line common"></span>
-            <span class="bottom_line common"></span>
+  <label for="menuToggle">
+    <input type="checkbox" id="menuToggle">
+    <div class="toggle">
+      <span class="top_line common"></span>
+      <span class="middle_line common"></span>
+      <span class="bottom_line common"></span>
+    </div>
+  </label>
+
+  <div class="Menu">
+    <ul class="main-menu">
+      <li><a href="Home_Page.html">Home</a></li>
+      <li><a href="trending.html">Trending</a></li>
+      <li><a href="saved_listings.html">Saved</a></li>
+      <li><a href="message.html">Messages</a></li>
+      <li class="mobile-sublet-link"><a href="Sublet_Form.html">Add Sublet</a></li>
+      <div class="dropdown">
+        <a href="#" class="dropbtn">Explore</a>
+        <div class="dropdown-content">
+          <a href="crime_mapping.html">Crime / Safest Neighborhoods</a>
+          <a href="Rent_Calculations.html">Rent Calculation</a>
         </div>
-    </label>
-    
-    <script>
-        //this is the menu code.
-        document.addEventListener("DOMContentLoaded", function () {
-            const menuToggle = document.getElementById("menuToggle");
-            const menu = document.querySelector(".Menu");
-            const body = document.body; // You can attach the class to another container if needed
+      </div>
+      <!-- Add Sublet visible only on small screens -->
+      
+    </ul>
 
-            menuToggle.addEventListener("change", function () {
-                if (menuToggle.checked) {
-                    menu.style.transform = "translateX(0)";
-                    body.classList.add("menu-open"); // Add class to trigger CSS animation
-                } else {
-                    menu.style.transform = "translateX(-300px)";
-                    body.classList.remove("menu-open"); // Remove class to revert animation
-                }
-            });
-        });
-    </script>
+    <ul class="account-menu">
+      <li><a href="Setting_Page.html">Settings</a></li>
+    </ul>
+  </div>
 
-    <!-- Load icon library -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Top Strip -->
+  <div class="top-strip">
+    <h2>
+      <img src="Photos/Boston_Logo.png" alt="Logo" class="logo">
+      Student APTs
+    </h2>
+  </div>
 
+  <hr>
 
-    <!-- fix this needs to stop moving all around-->
+  <!-- Add Sublet Button (desktop only) -->
+  <div class="header-subset">
 
+      <button type="button">🔔</button>
+    </a>
+  </div>
 
+  <!-- Profile Dropdown -->
+  <div class="profile-dropdown">
+    <img src="Photos/Background_image.png" alt="Profile" class="profile-avatar" id="profileToggle">
 
-    <div class="Menu">
+    <div class="dropdown-card" id="profileMenu">
+      <div class="profile-header">
+        <img src="Photos/Background_image.png" alt="Avatar">
+        <div>
+          <div class="name" id="profileName">Loading...</div>
+          <div class="email" id="profileEmail">Loading...</div>
+        </div>
+      </div>
 
-        <ul class="main-menu">
-            <li>
-                <label for="Dashboard">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                        fill="#3271a5">
-                        <path
-                            d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Z" />
-                    </svg>
-                </label>
+      <div class="theme-toggle">
+        <button class="theme-btn active">🌞</button>
+        <button class="theme-btn">🌙</button>
+      </div>
 
-                <a href="Home_page.html">Home</a>
-            </li>
-            <li>
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                    fill="#7bd05d">
-                    <path
-                        d="m136-240-56-56 296-298 160 160 208-206H640v-80h240v240h-80v-104L536-320 376-480 136-240Z" />
-                </svg>
-                <a href="trending.html">Trending</a>
-            </li>
-            <li>
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                    fill="#Ff0000">
-                    <path
-                        d="M480-388q51-47 82.5-77.5T611-518q17-22 23-38.5t6-35.5q0-36-26-62t-62-26q-21 0-40.5 8.5T480-648q-12-15-31-23.5t-41-8.5q-36 0-62 26t-26 62q0 19 5.5 35t22.5 38q17 22 48 52.5t84 78.5ZM200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Z" />
-                </svg>
-                <a href="saved_listings.html">Saved</a>
-
-            </li>
-            <li>
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                    fill="#D2B48C">
-                    <path
-                        d="M80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm160-320h320v-80H240v80Zm0-120h480v-80H240v80Zm0-120h480v-80H240v80Z" />
-                </svg>
-                <a href="message.html" target="_top">Messages</a>
-
-
-
-            </li>
-  
-            <!--
-            This needs to be a explore button with a drop down menu:
-            with Crime/safest 
-            Neighborhoods
-            Rent Calculation: 
-
-            -->
-            <li>
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                    fill="#3271a5">
-                    <path
-                        d="m368-336 112-84 110 84-42-136 112-88H524l-44-136-44 136H300l110 88-42 136ZM480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q104-33 172-132t68-220v-189l-240-90-240 90v189q0 121 68 220t172 132Zm0-316Z" />
-                </svg>
-                <a href="crime_mapping.html">Crime Mapping</a>
-
-            </li>
-
-
-
-
-
-
-
-        </ul>
-        <ul class="account-menu">
-            <li>
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                    fill="#000000">
-                    <path
-                        d="m640-120-12-60q-12-5-22.5-10.5T584-204l-58 18-40-68 46-40q-2-14-2-26t2-26l-46-40 40-68 58 18q11-8 21.5-13.5T628-460l12-60h80l12 60q12 5 22.5 11t21.5 15l58-20 40 70-46 40q2 12 2 25t-2 25l46 40-40 68-58-18q-11 8-21.5 13.5T732-180l-12 60h-80ZM80-160v-112q0-33 17-62t47-44q51-26 115-44t141-18h14q6 0 12 2-29 72-24 143t48 135H80Zm600-80q33 0 56.5-23.5T760-320q0-33-23.5-56.5T680-400q-33 0-56.5 23.5T600-320q0 33 23.5 56.5T680-240ZM400-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47Z" />
-                </svg>
-                <a href="account.html">Account</a>
-
-            </li>
-            <li>
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                    fill="#000000">
-                    <path
-                        d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm112-260q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Z" />
-                </svg>
-                <a href="settings.html">Settings</a>
-
-
-            </li>
-            <li>
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                    fill="#000000">
-                    <path
-                        d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v80h-80v-80H200v560h560v-80h80v80q0 33-23.5 56.5T760-120H200Zm480-160-56-56 103-104H360v-80h367L624-624l56-56 200 200-200 200Z" />
-                </svg>
-                <a href="Login_Page.html">Log Out</a>
-
-            </li>
-        </ul>
+      <div class="menu-links">
+        <a href="#">🛍️ Profile</a>
+        <a href="#">📘 Saved</a>
+        <a href="#">🔁 Upgrade Plan</a>
+        <a href="Sublet_Form.html">🔔 Notification</a></li>
+        <a href="#">⚙️ Settings</a>
+        <a href="#">🚪 Log Out</a>
+      </div>
     </div>
+  </div>
 
-    <div class="top-strip">
-        <h2>Student APTs</h2> <!-- You can add a logo or text here -->
-    </div>
-    
-    <hr style="margin-top: 50px; height: 3px; background-color: black; border: none;">
+  <!-- JavaScript -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const menuToggle = document.getElementById("menuToggle");
+      const menu = document.querySelector(".Menu");
+      const body = document.body;
 
+      menuToggle.addEventListener("change", function () {
+        if (menuToggle.checked) {
+          menu.style.transform = "translateX(0)";
+          body.classList.add("menu-open");
+        } else {
+          menu.style.transform = "translateX(-300px)";
+          body.classList.remove("menu-open");
+        }
+      });
 
+      const userData = localStorage.getItem("user");
+      if (userData) {
+        const user = JSON.parse(userData);
+        if (user.fullName) document.getElementById("profileName").textContent = user.fullName;
+        if (user.email) document.getElementById("profileEmail").textContent = user.email;
+      }
+    });
 
-    <div class="header-logout">
-        <a href="Login_Page.html">
-            <button type="Submit">Log Out</button>
-        </a>
+    const toggle = document.getElementById("profileToggle");
+    const profileMenu = document.getElementById("profileMenu");
 
-    </div>
+    toggle.addEventListener("click", () => {
+      profileMenu.style.display = profileMenu.style.display === "block" ? "none" : "block";
+    });
 
-    <div class="header-subset">
-        <a href="Sublet_Form.html">
-            <button type="Add Sublet">Add Sublet</button>
-        </a>
+    window.addEventListener("click", (e) => {
+      if (!toggle.contains(e.target) && !profileMenu.contains(e.target)) {
+        profileMenu.style.display = "none";
+      }
+    });
 
-
-    </div>
-
-
+    const themeButtons = document.querySelectorAll('.theme-btn');
+    themeButtons.forEach((btn, index) => {
+      btn.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode', index === 1);
+        themeButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  </script>
 
 </body>
 

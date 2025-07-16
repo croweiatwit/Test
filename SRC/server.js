@@ -1,142 +1,227 @@
-// Get  path to here:
-// Put photos in bucket would be cheaper
-// image in object stoge.
-// best latency
-// use library
-// bucket == blob
+
+// // SRC/server.js
+// const express = require('express');
+// const bodyParser = require('body-parser');
+// const path = require('path');
+
+// const authRoutes = require('./routes/auth');
+// const formRoutes = require('./routes/form');
+
+// const app = express();
+// const PORT = 3000;
+
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
+
+// // Serve static files
+// app.use(express.static('public'));
+// app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// // Mount API routes
+// app.use('/api', authRoutes);
+// app.use('/', formRoutes);
+
+// // Serve the login page as default route
+// app.get('/', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'public/Login_Page.html'));
+// });
+
+// app.listen(PORT, () => {
+//   console.log(`Server running at http://localhost:${PORT}`);
+// });
 
 
+
+// // working server
 const express = require('express');
 const bodyParser = require('body-parser');
-const fs = require('fs');
 const path = require('path');
-const multer = require('multer');
+const fs = require('fs');
+
+const authRoutes = require('./routes/auth');
+const formRoutes = require('./routes/form');
 
 const app = express();
 const PORT = 3000;
 
-// File paths
-const SUBMISSIONS_FILE = path.join(__dirname, 'submissions.json');
-const USERS_FILE = path.join(__dirname, 'users.json');
-
-// Upload directory setup
-const uploadsDir = path.join(__dirname, 'uploads');
-if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir);
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, 'uploads/'),
-  filename: (req, file, cb) => cb(null, Date.now() + '-' + file.originalname)
-});
-
-const upload = multer({ storage: storage });
-
-// Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json()); // For JSON payloads
+app.use(bodyParser.json());
+
+// Serve static files
 app.use(express.static('public'));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.post('/api/login', handleLogin);
 
+// 🔽 MESSENGER API ROUTE
+app.get('/api/users', (req, res) => {
+  const usersPath = path.join(__dirname, 'data/users.json');
 
-//
-// --- FORM SUBMISSION ROUTE ---
-//
-app.post('/submit-form', upload.single('photo'), (req, res) => {
-  const formData = req.body;
-  if (req.file) {
-    formData.photoPath = `/uploads/${req.file.filename}`;
+  console.log('[DEBUG] Looking for:', usersPath);
+
+  if (!fs.existsSync(usersPath)) {
+    console.error('[ERROR] File not found:', usersPath);
+    return res.status(500).json({ error: 'users.json not found' });
   }
 
-  fs.readFile(SUBMISSIONS_FILE, 'utf8', (err, data) => {
-    let submissions = [];
+  try {
+    const rawData = fs.readFileSync(usersPath, 'utf-8');
+    const users = JSON.parse(rawData);
 
-    if (!err && data) {
-      try {
-        submissions = JSON.parse(data);
-      } catch (parseErr) {
-        console.error('Error parsing JSON:', parseErr);
-      }
-    }
+    const safeUsers = users
+      .filter(u => u.username && u.email && u.fullName)
+      .map(({ email, username, fullName }) => ({
+        email,
+        username,
+        fullName
+      }));
 
-    submissions.push(formData);
-
-    fs.writeFile(SUBMISSIONS_FILE, JSON.stringify(submissions, null, 2), writeErr => {
-      if (writeErr) {
-        console.error('Error writing file:', writeErr);
-        return res.status(500).send('Server Error');
-      }
-      res.send('Form and photo submitted successfully');
-    });
-  });
+    console.log(`[DEBUG] Returning ${safeUsers.length} users`);
+    res.json(safeUsers);
+  } catch (err) {
+    console.error('[ERROR] Failed to read/parse users.json:', err.message);
+    res.status(500).json({ error: 'Failed to parse users file' });
+  }
 });
 
-//
-// --- SIGNUP ROUTE ---
-//
-function handleSignup(req, res) {
-  const { email, password, username, fullName } = req.body;
-  if (!email || !password || !username || !fullName) {
-    return res.status(400).json({ message: "All fields are required" });
-  }
 
-  let users = [];
-  if (fs.existsSync(USERS_FILE)) {
-    users = JSON.parse(fs.readFileSync(USERS_FILE));
-  }
+// Mount API routes
+app.use('/api', authRoutes);
+app.use('/', formRoutes);
 
-  if (users.find(u => u.email === email || u.username === username)) {
-    return res.status(409).json({ message: "User already exists" });
-  }
-
-  users.push({ email, password, username, fullName });
-  fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2));
-  res.status(201).json({ message: "Signup successful" });
-}
-app.post('/api/signup', handleSignup);
-
-//
-// --- LOGIN ROUTE ---
-//
-function handleLogin(req, res) {
-  const { username, password } = req.body;
-
-  if (!username || !password) {
-    return res.status(400).json({ message: "Username/email and password required" });
-  }
-
-  if (!fs.existsSync(USERS_FILE)) {
-    return res.status(401).json({ message: "Invalid credentials" });
-  }
-
-  const users = JSON.parse(fs.readFileSync(USERS_FILE));
-
-  const user = users.find(u =>
-    (u.username === username || u.email === username) &&
-    u.password === password
-  );
-
-  if (user) {
-    return res.status(200).json({
-      message: "Login successful!!!!!",
-      user: { fullName: user.fullName }
-    });
-  } else {
-    return res.status(401).json({ message: "Invalid credentials" });
-  }
-}
-app.post('/api/login', handleLogin);
-
-
-//
-// --- SERVE LOGIN PAGE BY DEFAULT ---
-//
+// Serve login page as default
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/Login_Page.html'));
 });
 
-//
-// --- START SERVER ---
-//
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
+
+
+
+
+
+
+// // backend/server.js
+// const express = require('express');
+// const cors = require('cors');
+// const bodyParser = require('body-parser');
+// const { Low } = require('lowdb');
+// const { JSONFile } = require('lowdb/node');
+// const path = require('path');
+// const fs = require('fs');
+
+// const authRoutes = require('./routes/auth');
+// const formRoutes = require('./routes/form');
+
+// const app = express();
+// const PORT = 3000;
+
+// // Ensure ./data directory and db file exist
+// const dataDir = path.join(__dirname, 'data');
+// const dbFile = path.join(dataDir, 'db.json');
+// if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir);
+// if (!fs.existsSync(dbFile)) fs.writeFileSync(dbFile, JSON.stringify({ users: [], messages: [] }, null, 2));
+
+// // Set up LowDB
+// const db = new Low(new JSONFile(dbFile));
+// async function initializeDB() {
+//   await db.read();
+//   db.data ||= { users: [], messages: [] };
+//   await db.write();
+// }
+// initializeDB();
+
+// // Middleware
+// app.use(cors());
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
+// app.use(express.static('public'));
+// app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// // --- USERS API ---
+
+// // Get all users
+// app.get('/api/users', async (req, res) => {
+//   await db.read();
+//   const users = db.data.users || [];
+//   res.json(users.map(({ id, username, email }) => ({ id, username, email })));
+// });
+
+// // Add a new user
+// app.post('/api/users', async (req, res) => {
+//   const { username, email } = req.body;
+//   console.log('[DEBUG] Add user request:', req.body);
+
+//   if (!username || !email) {
+//     return res.status(400).json({ error: 'Missing username or email' });
+//   }
+
+//   await db.read();
+//   const exists = db.data.users.find(u => u.email === email || u.username === username);
+//   if (exists) {
+//     return res.status(409).json({ error: 'User already exists' });
+//   }
+
+//   const newUser = { id: Date.now().toString(), username, email };
+//   db.data.users.push(newUser);
+//   await db.write();
+
+//   console.log('[DEBUG] User saved:', newUser);
+//   res.status(201).json({ id: newUser.id });
+// });
+
+// // --- MESSAGES API ---
+
+// // Get conversation between two users
+// app.get('/api/messages', async (req, res) => {
+//   const { user1, user2 } = req.query;
+//   if (!user1 || !user2) return res.status(400).json({ error: 'Missing user1 or user2' });
+
+//   await db.read();
+//   const messages = db.data.messages.filter(
+//     m => (m.senderId === user1 && m.receiverId === user2) ||
+//          (m.senderId === user2 && m.receiverId === user1)
+//   );
+
+//   res.json(messages.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp)));
+// });
+
+// // Post a new message
+// app.post('/api/messages', async (req, res) => {
+//   const { senderId, receiverId, text } = req.body;
+//   console.log('[DEBUG] New message payload:', req.body);
+
+//   if (!senderId || !receiverId || !text) {
+//     console.log('[ERROR] Missing fields');
+//     return res.status(400).json({ error: 'Missing senderId, receiverId, or text' });
+//   }
+
+//   await db.read();
+//   const newMsg = {
+//     id: Date.now().toString(),
+//     senderId,
+//     receiverId,
+//     text,
+//     timestamp: new Date().toISOString()
+//   };
+
+//   db.data.messages.push(newMsg);
+//   await db.write();
+
+//   console.log('[DEBUG] Message saved:', newMsg);
+//   res.status(201).json({ id: newMsg.id });
+// });
+
+// // --- MOUNT OTHER ROUTES ---
+// app.use('/api', authRoutes);
+// app.use('/', formRoutes);
+
+// // --- FALLBACK ROUTE ---
+// app.get('/', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'public/Login_Page.html'));
+// });
+
+// // --- START SERVER ---
+// app.listen(PORT, () => {
+//   console.log(`🚀 Server running on http://localhost:${PORT}`);
+// });

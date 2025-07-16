@@ -2,18 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Pure CSS Tabs With Indicator</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Affordability Calculator</title>
+
   <link rel="stylesheet" href="CSS/Gobal_Page.css" />
   <link rel="stylesheet" href="CSS/Menu_Bar.css" />
+  <title>Messenger</title>
+
 </head>
 <body>
 
-  <label for="menuToggle">
+
+ <label for="menuToggle">
     <input type="checkbox" id="menuToggle">
     <div class="toggle">
       <span class="top_line common"></span>
@@ -204,723 +205,224 @@
     </div>
   </div>
 
-  <div class="header-photo">
-    <img src="Photos/Background_AFC_Photo.png" alt="Logo" class="header-image">
-    <div class="header-photo-text">
-      <h1>Discover Your New Apartment Here</h1>
-
-    </div>
-  </div>
-
-  <style>
-
-
-    .header-photo {
-      position: relative;
-      width: 100%;
-      height: 300px;
-      /* Adjust height as needed */
-      margin-top: 0;
-    }
-
-    .header-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      /* Ensures the image covers the area */
-      display: block;
-    }
-
-    .header-photo-text {
-      position: absolute;
-      top: 30%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      color: black;
-      background-color: rgba(255, 255, 255, 0.392);
-      border-radius: 10px 10px 10px 10px;
-
-    }
-
-    .header-photo-text h1 {
-      font-size: 40px;
-      margin: 0;
-    }
-
-    </style>
-
-
-<!-- search bar -->
-<!-- search bar -->
-<div class="animated-search-container">
-  <div class="animated-search-wrapper">
-    <input type="text" id="searchInput" placeholder="" required />
-
-    <ul class="animated-label">
-      <li data-char="s">s</li>
-      <li data-char="e">e</li>
-      <li data-char="a">a</li>
-      <li data-char="r">r</li>
-      <li data-char="c">c</li>
-      <li data-char="h">h</li>
-    </ul>
-  </div>
-</div>
-
 <style>
-
-  @import url('https://fonts.googleapis.com/css2?family=Knewave&display=swap');
-
-  .animated-search-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: -90px;
-  }
-
-  .animated-search-wrapper {
-    width: 100%;
-    max-width: 300px;
-    position: relative;
-    font-family: 'Knewave', cursive;
-  }
-
-  .animated-search-wrapper input {
-    width: 100%;
-    padding: 15px;
-    background-color: white;
-    border: 2px solid black;
-    color: #111;
-    font-size: 15px;
-    box-shadow: 3px 1px 0px 2px, 0px -1px 0px 2px rgba(0, 0, 0, 0.25);
-    height: 30px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-family: 'Knewave', cursive;
-  }
-
-  .animated-search-wrapper input:focus,
-  .animated-search-wrapper input:valid {
-    outline: none;
-  }
-
-  .animated-search-wrapper input:focus ~ .animated-label li::before,
-  .animated-search-wrapper input:valid ~ .animated-label li::before {
-    filter: blur(20px);
-    transform: translate(0, -35px) rotate(-210deg);
-  }
-
-  .animated-search-wrapper input:focus ~ .animated-label li::after,
-  .animated-search-wrapper input:valid ~ .animated-label li::after {
-    filter: blur(0);
-    transform: scale(1) rotate(0);
-  }
-
-  .animated-label {
-    position: absolute;
-    top: 38px;
-    left: -4px;
-    padding-left: 22px;
-    list-style: none;
-    display: flex;
-    pointer-events: none;
-    transition: top 0.3s ease;
-    margin: 0;
-  }
-
-  .animated-label li {
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: transparent;
-    position: relative;
-    pointer-events: none;
-    transition: 500ms ease-in-out;
-  }
-
-  .animated-label li::selection {
-    color: transparent;
-  }
-
-  .animated-label li::before,
-  .animated-label li::after {
-    color: black;
-    position: absolute;
-    transition: 500ms ease-in-out;
-  }
-
-  .animated-label li::before {
-    top: -25px;
-  }
-
-  .animated-label li::after {
-    top: -70px;
-    transform: scale(0) rotate(210deg);
-    filter: blur(20px);
-    color: #000000;
-  }
-
-  .animated-label li[data-char="s"]::before {
-    content: 's';
-    transition-delay: 200ms;
-  }
-
-  .animated-label li[data-char="s"]::after {
-    content: 's';
-    left: 12px;
-    transition-delay: 600ms;
-  }
-
-  .animated-label li[data-char="e"]::before {
-    content: 'e';
-    transition-delay: 400ms;
-  }
-
-  .animated-label li[data-char="e"]::after {
-    content: 'e';
-    left: 24px;
-    transition-delay: 800ms;
-  }
-
-  .animated-label li[data-char="a"]::before {
-    content: 'a';
-    transition-delay: 600ms;
-  }
-
-  .animated-label li[data-char="a"]::after {
-    content: 'a';
-    left: 36px;
-    transition-delay: 1000ms;
-  }
-
-  .animated-label li[data-char="r"]::before {
-    content: 'r';
-    transition-delay: 800ms;
-  }
-
-  .animated-label li[data-char="r"]::after {
-    content: 'r';
-    left: 48px;
-    transition-delay: 1200ms;
-  }
-
-  .animated-label li[data-char="c"]::before {
-    content: 'c';
-    transition-delay: 1000ms;
-  }
-
-  .animated-label li[data-char="c"]::after {
-    content: 'c';
-    left: 60px;
-    transition-delay: 1400ms;
-  }
-
-  .animated-label li[data-char="h"]::before {
-    content: 'h';
-    transition-delay: 1200ms;
-  }
-
-  .animated-label li[data-char="h"]::after {
-    content: 'h';
-    left: 72px;
-    transition-delay: 1600ms;
-  }
-
-  @media (max-width: 768px) {
-      .animated-search-wrapper {
-    width: 100%;
-    max-width: 200px;
-    position: relative;
-    font-family: 'Knewave', cursive;
     
-  }
-    
-  }
-</style>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const input = document.getElementById('searchInput');
-
-    input.addEventListener('keydown', function (event) {
-      if (event.key === 'Enter') {
-        event.preventDefault(); // prevent form submission
-        const value = input.value.trim();
-
-        if (value) {
-          // Log the value (for debug)
-          console.log("Redirecting with query:", value);
-
-          // Redirect with search query
-          window.location.href = `All_Listings_Page.html?query=${encodeURIComponent(value)}`;
-        } else {
-          alert('Please enter a search term.');
-        }
-      }
-    });
-  });
-</script>
-
-
-
-
-
-<!-- Sublet and Apartments -->
-
-  <style>
-    @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway:300,400');
-
-    body {
-      background: white;
-      font-family: "Raleway", sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-
-    h1 {
-      text-align: center;
-      color: var(--menu-color);
-      /* font-weight: bolder; */
-      padding: 40px 0 20px 0;
-      margin: 0;
-    }
-
-    .tabs {
-      position: relative;
-      width: 80%;
-      min-width: 200px;
-      max-width: 1500px;
-      margin: 0 auto;
-      background: white;
-      border-radius: 5px;
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
-                  0 10px 10px rgba(0, 0, 0, 0.22);
-      padding: 40px 30px 60px;
-    }
-
-    .tabs input[name="tab-control"] {
-      display: none;
-    }
-
-    .tabs ul {
+    .insta-messenger {
       display: flex;
-      justify-content: space-between;
-      list-style: none;
-      padding: 0;
-      margin: 0 0 20px;
-    }
-
-    .tabs ul li {
-      width: 50%;
-      text-align: center;
-    }
-
-    .tabs ul li label {
-      display: block;
-      cursor: pointer;
-      color: #b3ccf9;
-      font-family: "Montserrat", sans-serif;
-      font-weight: bold;
-      font-size: 18px;
-      transition: color 0.2s ease-in-out;
-      user-select: none;
-    }
-
-    .tabs .slider {
-      position: relative;
-      width: 50%;
-      height: 4px;
-      background: transparent;
-      transition: transform 0.3s ease-in-out;
-    }
-
-    .tabs .slider .indicator {
-      width: 50px;
-      height: 4px;
-      background: var(--menu-color);
-      margin: 0 auto;
-      border-radius: 2px;
-    }
-
-    .tabs .content {
-      margin-top: 20px;
-    }
-
-    .tabs .content section {
-      display: none;
-      animation: fadeIn 0.3s ease-in-out;
-      line-height: 1.5;
-    }
-
-    .tabs .content section h2 {
-      margin-top: 0;
-      color: var(--menu-color);
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(5%);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0%);
-      }
-    }
-
-    /* Tab logic for 2 tabs */
-    #tab1:checked ~ ul li:nth-child(1) label {
-      color: var(--menu-color);
-    }
-
-    #tab1:checked ~ .slider {
-      transform: translateX(0%);
-    }
-
-    #tab1:checked ~ .content section:nth-child(1) {
-      display: block;
-    }
-
-    #tab2:checked ~ ul li:nth-child(2) label {
-      color: var(--menu-color);
-    }
-
-    #tab2:checked ~ .slider {
-      transform: translateX(100%);
-    }
-
-    #tab2:checked ~ .content section:nth-child(2) {
-      display: block;
-    }
-
-  </style>
-<!-- </head>
-<body> -->
-
-<h1>Trending Apartments and Sublets</h1>
-<div class="tabs">
-  <input type="radio" id="tab1" name="tab-control" checked>
-  <input type="radio" id="tab2" name="tab-control">
-
-  <ul>
-    <li><label for="tab1">Apartments</label></li>
-    <li><label for="tab2">Sublets</label></li>
-  </ul>
-
-  <div class="slider"><div class="indicator"></div></div>
-
-  <div class="content">
-    <section>
-
-      <p>No Apartments Available</p>
-
-    </section>
-    <section>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-  <style>
-    /* body {
-      font-family: 'Inter', sans-serif;
-      background: #f0f2f5;
-      margin: 0;
-      padding: 20px;
-    } */
-.grid-wrapper {
-  display: flex;
-  justify-content: center;
-  padding: 0 20px;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-  max-width: 1200px;    /* Controls centering and prevents full stretch */
-  width: 100%;
-
-}
-    .listing-card {
-      background: #fff;
+      max-width: 85%;
+      height: 80%;
+      margin: 40px auto;
+      border: 1px solid #ddd;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      background: #fff;
+    }
+
+
+    .sidebar-search {
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .sidebar-search input {
+      width: 70%;
+      padding: 8px;
+      border-radius: 20px;
+      border: 1px solid #010101c4;
+    }
+
+    .sidebar {
+      padding:15px;
+      width: 25%;
+      border-right: 1px solid #eee;
+      display: flex;
+      flex-direction: column;
+      background-color: #fdfdfd;
+      
+    }
+
+    .sidebar #searchInput {
+      padding: 8px;
+      width: 70%;
+      border-radius: 12px;
+}
+    .sidebar-header {
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 20px;
+    }
+
+    .sidebar-header h3 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .sidebar-header button {
+      background: none;
+      border: none;
       cursor: pointer;
     }
 
+    .sidebar-header input {
+      width: 70%;
+      margin: 10px auto;
+      padding: 10px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      outline: none;
+      display: block;
+    }
 
-    .listing-image img {
+    .chat-list {
+      flex: 1;
+      overflow-y: auto;
+    }
+
+
+    .chat {
+      display: flex;
+      align-items: center;
+      padding: 12px 20px;
+      cursor: pointer;
+      border-bottom: 1px solid #f0f0f0;
+      transition: background 0.2s;
+    }
+
+    .chat:hover {
+      background: #f5f5f5;
+    }
+
+    .chat img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      margin-right: 12px;
+    }
+
+    .chat-info strong {
+      display: block;
+      font-size: 0.95rem;
+    }
+
+    .chat-info p {
+      margin: 2px 0 0;
+      font-size: 12px;
+      color: #888;
+    }
+
+    .message-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      background-color: #fafafa;
+    }
+
+    .conversation {
       width: 100%;
-      height: 200px;
-      object-fit: cover;
-      background: #eee;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
 
-    .listing-content {
+    .chat-header {
       padding: 16px;
+      font-weight: bold;
+      font-size: 1rem;
+      border-bottom: 1px solid #eee;
     }
 
-    .listing-content h2 {
-      font-size: 18px;
-      margin: 0 0 8px;
+    .chat-body {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
     }
 
-    .listing-content p {
-      margin: 4px 0;
+    .chat-input {
+      display: flex;
+      padding: 16px;
+      border-top: 1px solid #ddd;
+      background: #fff;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 10px 14px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      margin-right: 10px;
       font-size: 14px;
     }
 
-    .grid-wrapper {
-  max-width: 1200px;    /* Optional: controls overall width */
-  margin: 0 auto;       /* This centers the wrapper */
-  padding: 0 20px;      /* Optional: adds space on small screens */
-}
-  </style>
- <div class="listings-container">
-<div class="grid-wrapper">
-  <div id="listing-grid" class="grid-container"></div>
-</div>
-
-<script>
-  const listings = [
-    {
-      apartmentName: "The Equestrian At Pelham Parkway",
-      address: "1680 Pelham S, Bronx, NY 10461",
-      bedrooms: "1",
-      bathroom: "1",
-      rent: "1",
-      start: "2025-05-10",
-      end: "2025-06-24",
-      photoPath: "",
-      available: "yes",
-      parkingOutdoor: "yes",
-      parkingIndoor: "no",
-      parkingPublic: "no",
-      parkingOther: "yes",
-      kitchenMicrowave: "yes",
-      kitchenFridge: "yes",
-      kitchenOven: "yes",
-      kitchenGrill: "yes",
-      kitchenDishwasher: "yes",
-      kitchenPantry: "no",
-      furnished: "yes",
-      hasWasher: "no",
-      hasPatio: "no",
-      hasCloset: "yes",
-      hasTub: "yes",
-      hasAC: "yes",
-      hasHeat: "yes",
-      hasSecurity: "yes",
-      hasLaundry: "no",
-      hasElevator: "no",
-      hasAccess: "no",
-      hasControlledAccess: "no",
-      hasBikeStorage: "no",
-      hasCourtyard: "no",
-      hasWindow: "yes",
-      hasGym: "no",
-      hasEthernet: "yes"
-    },
-    {
-      apartmentName: "The Crows Nest",
-      address: "66 lockwood ln Boxford Mass ",
-      bedrooms: "1",
-      bathroom: "1",
-      rent: "1",
-      start: "2025-05-10",
-      end: "2025-06-24",
-      photoPath: "",
-      available: "yes",
-      parkingOutdoor: "yes",
-      parkingIndoor: "no",
-      parkingPublic: "no",
-      parkingOther: "yes",
-      kitchenMicrowave: "yes",
-      kitchenFridge: "yes",
-      kitchenOven: "yes",
-      kitchenGrill: "yes",
-      kitchenDishwasher: "yes",
-      kitchenPantry: "no",
-      furnished: "yes",
-      hasWasher: "no",
-      hasPatio: "no",
-      hasCloset: "yes",
-      hasTub: "yes",
-      hasAC: "yes",
-      hasHeat: "yes",
-      hasSecurity: "yes",
-      hasLaundry: "no",
-      hasElevator: "no",
-      hasAccess: "no",
-      hasControlledAccess: "no",
-      hasBikeStorage: "no",
-      hasCourtyard: "no",
-      hasWindow: "yes",
-      hasGym: "no",
-      hasEthernet: "yes"
-    },{
-      apartmentName: "The Chicken Coop",
-      address: "17 Topsfield Rd, Wenham, MA 01984",
-      bedrooms: "1",
-      bathroom: "1",
-      rent: "1",
-      start: "2025-05-10",
-      end: "2025-06-24",
-      photoPath: "",
-      available: "yes",
-      parkingOutdoor: "yes",
-      parkingIndoor: "no",
-      parkingPublic: "no",
-      parkingOther: "yes",
-      kitchenMicrowave: "yes",
-      kitchenFridge: "yes",
-      kitchenOven: "yes",
-      kitchenGrill: "yes",
-      kitchenDishwasher: "yes",
-      kitchenPantry: "no",
-      furnished: "yes",
-      hasWasher: "no",
-      hasPatio: "no",
-      hasCloset: "yes",
-      hasTub: "yes",
-      hasAC: "yes",
-      hasHeat: "yes",
-      hasSecurity: "yes",
-      hasLaundry: "no",
-      hasElevator: "no",
-      hasAccess: "no",
-      hasControlledAccess: "no",
-      hasBikeStorage: "no",
-      hasCourtyard: "no",
-      hasWindow: "yes",
-      hasGym: "no",
-      hasEthernet: "yes"
-    },
-    {
-      apartmentName: "The Jayden Apartments",
-      address: "7 Dearborn Rd, Peabody, MA 01960",
-      bedrooms: "1",
-      bathroom: "1",
-      rent: "1",
-      start: "2025-05-10",
-      end: "2025-06-24",
-      photoPath: "",
-      available: "yes",
-      parkingOutdoor: "yes",
-      parkingIndoor: "no",
-      parkingPublic: "no",
-      parkingOther: "yes",
-      kitchenMicrowave: "yes",
-      kitchenFridge: "yes",
-      kitchenOven: "yes",
-      kitchenGrill: "yes",
-      kitchenDishwasher: "yes",
-      kitchenPantry: "no",
-      furnished: "yes",
-      hasWasher: "no",
-      hasPatio: "no",
-      hasCloset: "yes",
-      hasTub: "yes",
-      hasAC: "yes",
-      hasHeat: "yes",
-      hasSecurity: "yes",
-      hasLaundry: "no",
-      hasElevator: "no",
-      hasAccess: "no",
-      hasControlledAccess: "no",
-      hasBikeStorage: "no",
-      hasCourtyard: "no",
-      hasWindow: "yes",
-      hasGym: "no",
-      hasEthernet: "yes"
+    .chat-input button {
+      background: #0095f6;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      cursor: pointer;
     }
-  ];
 
-  const grid = document.getElementById('listing-grid');
+    .message {
+      background: #e1f3ff;
+      padding: 10px 14px;
+      margin: 6px 0;
+      border-radius: 12px;
+      max-width: 75%;
+      font-size: 14px;
+    }
 
-  listings.forEach(listing => {
-    const {
-      apartmentName, address, rent, bedrooms, bathroom, start, end, photoPath
-    } = listing;
+    .sent {
+      align-self: flex-end;
+      background: #daf8cb;
+    }
 
-    // const photoPath = listing.photoPaths?.[0]; // grab first image path, or undefined
-    // const imageSrc = photoPath || "/Photos/Boston_Logo_White.png";
+    .received {
+      align-self: flex-start;
+      background: #f1f1f1;
+    }
 
-const imageSrc = photoPath || "https://placehold.co/600x400/000000/FFF";
+    .message-area .placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Optional: center vertically too */
+  height: 100%;            /* Optional: stretch to parent */
+  text-align: center;      /* Optional: center the text */
+  }
 
-
-
-    const card = `
-      <div class="listing-card">
-        <div class="listing-image">
-          <img src="${imageSrc}" alt="${apartmentName}">
-        </div>
-        <div class="listing-content">
-          <h2>${apartmentName} - $${rent}/mo</h2>
-          <p><strong>Address:</strong> ${address}</p>
-          <p><strong>${bedrooms} Bed</strong> | <strong>${bathroom} Bath</strong></p>
-          <p><strong>Available:</strong> ${start} to ${end}</p>
-        </div>
+  </style>
+</head>
+<body>
+  <div class="insta-messenger">
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h3>Chat</h3>
+        <button>
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000">
+            <path d="M120-160v-600q0-33 23.5-56.5T200-840h480q33 0 56.5 23.5T760-760v203q-10-2-20-2.5t-20-.5q-10 0-20 .5t-20 2.5v-203H200v400h283q-2 10-2.5 20t-.5 20q0 10 .5 20t2.5 20H240L120-160Zm160-440h320v-80H280v80Zm0 160h200v-80H280v80Zm400 280v-120H560v-80h120v-120h80v120h120v80H760v120h-80Z"/>
+          </svg>
+        </button>
       </div>
-    `;
-
-    const wrapper = document.createElement("div");
-    wrapper.innerHTML = card;
-
-    const cardElement = wrapper.firstElementChild;
-    cardElement.addEventListener("click", () => {
-      localStorage.setItem("selectedListing", JSON.stringify(listing));
-      window.location.href = "listing_detail.html";
-    });
-
-    grid.appendChild(cardElement);
-  });
-
-</script>
-    </section>
+      
+      <input type="text" id="searchInput" placeholder="Search users...">
+    
+      <div class="chat-list" id="chatList"></div>
+    </div>
+    <div class="message-area" id="messageArea">
+      <div class="placeholder">
+        <h2>Your Messages</h2>
+        <p>Click a user to start chatting</p>
+      </div>
+    </div>
   </div>
- <div class="hover-underline" onclick="location.href='All_Listings_Page.html'">View More</div>
-</div>
-</div>
-
-
-<!-- View more button -->
-
-  <style>
-
-.hover-underline {
-  font-size: 1.5rem;
-  color: black;
-  position: relative;
-  display: block;
-  width: fit-content; /* or a fixed width like 200px */
-  margin: 0 auto;
-  top: 20pt;
-}
-
-
-.hover-underline::after,
-.hover-underline::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(to right, #03355f, #75fdfd);
-  bottom: -5px;
-  left: 0;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.4s ease-out;
-}
-
-.hover-underline::before {
-  top: -5px;
-  transform-origin: left;
-}
-
-.hover-underline:hover::after,
-.hover-underline:hover::before {
-  transform: scaleX(1);
-}
+</body>
+</html>
 
   </style>
 
@@ -1095,27 +597,235 @@ const imageSrc = photoPath || "https://placehold.co/600x400/000000/FFF";
     }
   </script>
 
-  <script>
-  const searchInput = document.getElementById("searchInput");
 
-  searchInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-      const location = searchInput.value.trim();
-      if (location) {
-        localStorage.setItem("mapSearchQuery", location);
-        window.location.href = `All_Listings_Page.html?query=${encodeURIComponent(value)}`;
+<!-- <script>
+  let selectedUser = null;
+  let messages = JSON.parse(localStorage.getItem('messages') || '{}');
+  let allUsers = [];
 
-      }
+  const chatList = document.getElementById('chatList');
+  const searchInput = document.getElementById('searchInput');
+  const messageArea = document.getElementById('messageArea');
+
+  function saveMessages() {
+    localStorage.setItem('messages', JSON.stringify(messages));
+  }
+
+  function renderChatList(filteredUsers = allUsers) {
+    chatList.innerHTML = '';
+    if (filteredUsers.length === 0) {
+      chatList.innerHTML = '<p style="padding:10px; color:gray;">No users found.</p>';
+      return;
     }
+
+    filteredUsers.forEach(user => {
+      const chat = document.createElement('div');
+      chat.className = 'chat';
+      chat.innerHTML = `
+        <img src="https://i.pravatar.cc/40?u=${user.email}" />
+        <div class="chat-info">
+          <strong>${user.username}</strong>
+          <p>${user.email}</p>
+        </div>
+      `;
+      chat.addEventListener('click', () => openChat(user));
+      chatList.appendChild(chat);
+    });
+  }
+
+  function openChat(user) {
+    selectedUser = user;
+    if (!messages[user.email]) messages[user.email] = [];
+
+    const userMessages = messages[user.email];
+
+    messageArea.innerHTML = `
+      <div class="conversation">
+        <div class="chat-header">Chat with ${user.username}</div>
+        <div class="chat-body" id="chatBody">
+          ${userMessages.map(msg => `
+            <div class="message ${msg.from === 'me' ? 'sent' : 'received'}">${msg.text}</div>
+          `).join('')}
+        </div>
+        <div class="chat-input">
+          <input type="text" id="msgInput" placeholder="Type a message..." />
+          <button id="sendBtn">Send</button>
+        </div>
+      </div>
+    `;
+
+    document.getElementById('sendBtn').addEventListener('click', sendMessage);
+  }
+
+  function sendMessage() {
+    const input = document.getElementById('msgInput');
+    const text = input.value.trim();
+    if (!text || !selectedUser) return;
+
+    const userEmail = selectedUser.email;
+    if (!messages[userEmail]) messages[userEmail] = [];
+    messages[userEmail].push({ from: 'me', text });
+
+    const chatBody = document.getElementById('chatBody');
+    const msgDiv = document.createElement('div');
+    msgDiv.className = 'message sent';
+    msgDiv.textContent = text;
+    chatBody.appendChild(msgDiv);
+
+    input.value = '';
+    chatBody.scrollTop = chatBody.scrollHeight;
+    saveMessages();
+  }
+
+  // 🔍 Search filtering
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase();
+    const filtered = allUsers.filter(user =>
+      user.username?.toLowerCase().includes(query) ||
+      user.email?.toLowerCase().includes(query)
+    );
+
+    console.log("Search query:", query);
+    console.log("Matching usernames:", filtered.map(u => u.username));
+
+    renderChatList(filtered);
   });
+
+// 🔁 Fetch users from backend API
+fetch('/api/users')
+  .then(res => {
+    console.log('[DEBUG] Response status:', res.status);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  })
+  .then(users => {
+    console.log('[DEBUG] Fetched users:', users);
+    allUsers = users;
+    renderChatList();
+  })
+  .catch(err => {
+    console.error('[ERROR] Failed to load users:', err);
+    chatList.innerHTML = '<p style="padding:10px; color:red;">⚠️ Unable to load user list. Check server.</p>';
+  });
+
+</script> -->
+
+<script>
+  let selectedUser = null;
+  let messages = JSON.parse(localStorage.getItem('messages') || '{}');
+  let allUsers = [];
+
+  const chatList = document.getElementById('chatList');
+  const searchInput = document.getElementById('searchInput');
+  const messageArea = document.getElementById('messageArea');
+
+  function saveMessages() {
+    localStorage.setItem('messages', JSON.stringify(messages));
+  }
+
+  function renderChatList(filteredUsers = allUsers) {
+    chatList.innerHTML = '';
+    if (filteredUsers.length === 0) {
+      chatList.innerHTML = '<p style="padding:10px; color:gray;">No users found.</p>';
+      return;
+    }
+
+    filteredUsers.forEach(user => {
+      const chat = document.createElement('div');
+      chat.className = 'chat';
+      chat.innerHTML = `
+        <img src="https://i.pravatar.cc/40?u=${user.email}" />
+        <div class="chat-info">
+          <strong>${user.username}</strong>
+          <p>${user.email}</p>
+        </div>
+      `;
+      chat.addEventListener('click', () => openChat(user));
+      chatList.appendChild(chat);
+    });
+  }
+
+  function openChat(user) {
+    selectedUser = user;
+    if (!messages[user.email]) messages[user.email] = [];
+
+    const userMessages = messages[user.email];
+
+    messageArea.innerHTML = `
+      <div class="conversation">
+        <div class="chat-header">Chat with ${user.username}</div>
+        <div class="chat-body" id="chatBody">
+          ${userMessages.map(msg => `
+            <div class="message ${msg.from === 'me' ? 'sent' : 'received'}">${msg.text}</div>
+          `).join('')}
+        </div>
+        <div class="chat-input">
+          <input type="text" id="msgInput" placeholder="Type a message..." />
+          <button id="sendBtn">Send</button>
+        </div>
+      </div>
+    `;
+
+    document.getElementById('sendBtn').addEventListener('click', sendMessage);
+  }
+
+  function sendMessage() {
+    const input = document.getElementById('msgInput');
+    const text = input.value.trim();
+    if (!text || !selectedUser) return;
+
+    const userEmail = selectedUser.email;
+    if (!messages[userEmail]) messages[userEmail] = [];
+    messages[userEmail].push({ from: 'me', text });
+
+    const chatBody = document.getElementById('chatBody');
+    const msgDiv = document.createElement('div');
+    msgDiv.className = 'message sent';
+    msgDiv.textContent = text;
+    chatBody.appendChild(msgDiv);
+
+    input.value = '';
+    chatBody.scrollTop = chatBody.scrollHeight;
+    saveMessages();
+  }
+
+  // 🔍 Search filtering (results only shown after input)
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase().trim();
+
+    if (!query) {
+      chatList.innerHTML = ''; // hide chat list if nothing typed
+      return;
+    }
+
+    const filtered = allUsers.filter(user =>
+      user.username?.toLowerCase().includes(query) ||
+      user.email?.toLowerCase().includes(query)
+    );
+
+    console.log("Search query:", query);
+    console.log("Matching usernames:", filtered.map(u => u.username));
+
+    renderChatList(filtered);
+  });
+
+  // 🔁 Fetch users from user.json (background load, no render on load)
+fetch('/api/users')
+    .then(res => {
+      console.log('[DEBUG] Response status:', res.status);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.json();
+    })
+    .then(users => {
+      console.log('[DEBUG] Fetched users:', users);
+      allUsers = users;
+      // 🚫 Do NOT call renderChatList here — wait for search input
+    })
+    .catch(err => {
+      console.error('[ERROR] Failed to load users:', err);
+      chatList.innerHTML = '<p style="padding:10px; color:red;">⚠️ Unable to load user list. Check server.</p>';
+    });
 </script>
-
-</body>
-
-
-
-
-<!-- Genreal Script  -->
 
 
 
@@ -1220,4 +930,6 @@ const imageSrc = photoPath || "https://placehold.co/600x400/000000/FFF";
         }
       });
     </script>
+</html>
+</body>
 </html>

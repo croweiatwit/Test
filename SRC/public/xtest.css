@@ -1,0 +1,297 @@
+  .theme-toggle {
+          display: flex;
+          gap: 10px;
+          justify-content: center;
+          align-items: center;
+          margin: 10px 0;
+        }
+
+        .theme-btn {
+          width: 40px;
+          height: 40px;
+          font-size: 22px;
+          border: none;
+          border-radius: 50%;
+          background: linear-gradient(145deg, #f0f0f0, #dcdcdc);
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+          cursor: pointer;
+          transition: all 0.3s ease-in-out;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+        }
+
+        .theme-btn:hover {
+          transform: scale(1.1);
+          box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+        }
+
+        .theme-btn.active {
+          background: radial-gradient(circle, #90cdf4, #4299e1);
+          color: #fff;
+          box-shadow: 0 0 10px #4299e1, 0 0 20px #4299e1;
+        }
+
+        .theme-btn .icon {
+          pointer-events: none;
+        }
+
+
+
+
+        .menu-links a svg {
+          vertical-align: middle;
+          margin-right: 6px;
+        }
+
+
+
+        body {
+          margin: 0;
+          font-family: sans-serif;
+          background: #f9f9fb;
+        }
+
+        .profile-dropdown {
+          position: absolute;
+          top: 15px;
+          right: 25px;
+          z-index: 1001;
+        }
+
+        .profile-avatar {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          cursor: pointer;
+          border: 2px solid #ccc;
+          object-fit: cover;
+        }
+
+        .dropdown-card {
+          display: none;
+          position: absolute;
+          top: 75px;
+          right: 0;
+          width: 260px;
+          background: white;
+          border-radius: 16px;
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+          padding: 16px;
+          z-index: 1000;
+        }
+
+        .profile-header {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding-bottom: 12px;
+          border-bottom: 1px solid #eee;
+        }
+
+        .profile-header img {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+        }
+
+        .name {
+          font-weight: 600;
+          font-size: 14px;
+        }
+
+        .email {
+          font-size: 12px;
+          color: gray;
+        }
+
+
+        .theme-btn {
+          background: #f3f3f3;
+          border: none;
+          border-radius: 8px;
+          padding: 8px;
+          cursor: pointer;
+          font-size: 16px;
+          transition: background 0.2s;
+        }
+
+        .theme-btn.active,
+        .theme-btn:hover {
+          background-color: #d9e8fb;
+        }
+
+        .menu-links a {
+          display: block;
+          text-decoration: none;
+          color: #333;
+          padding: 10px 0;
+          font-size: 14px;
+        }
+
+        .menu-links a:hover {
+          background: #f5f5f5;
+          border-radius: 8px;
+          padding-left: 8px;
+        }
+
+        .dropdown {
+          position: relative;
+          display: inline-block;
+        }
+
+        .dropbtn {
+          cursor: pointer;
+          text-decoration: none;
+          padding: 10px;
+          color: #3271a5;
+          display: inline-flex;
+          align-items: center;
+        }
+
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          min-width: 220px;
+          z-index: 1000;
+          flex-direction: column;
+        }
+
+        .dropdown-content a {
+          color: black;
+          padding: 10px 16px;
+          text-decoration: none;
+          display: block;
+        }
+
+        .dropdown-content a:hover {
+          background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+
+        .header-subset {
+          position: absolute;
+          top: 15px;
+          right: 110px;
+          z-index: 1001;
+        }
+
+        .header-subset button {
+          font-size: 10pt;
+          font-weight: bold;
+          padding: 6px 12px;
+          border-radius: 12px;
+          background-color: transparent;
+          cursor: pointer;
+        }
+
+        .header-subset button:hover {
+          background-color: #3271a5;
+          color: white;
+        }
+
+        .top-strip {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 98.9vw;
+          /* Ensures full viewport width */
+          height: 75px;
+          background: white;
+          color: black;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 1000;
+          padding: 10px 20px;
+          box-sizing: border-box;
+        }
+
+
+        .top-strip h2 {
+          font-size: 30pt;
+          font-weight: bolder;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+
+        .main-logo {
+          width: 60px;
+          height: 60px;
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center;
+          z-index: 1001;
+        }
+
+
+        hr {
+          margin-top: 70px;
+          height: 3px;
+          background-color: black;
+          border: none;
+        }
+
+        body.dark-mode {
+          background: #121212;
+          color: #e0e0e0;
+        }
+
+        /* body.dark-mode .dropdown-card {
+      background: #1e1e1e;
+      box-shadow: 0 8px 24px rgba(255, 255, 255, 0.05);
+    } */
+
+        body.dark-mode .email {
+          color: #aaaaaa;
+        }
+
+        body.dark-mode .theme-btn {
+          background: #2c2c2c;
+          color: #e0e0e0;
+        }
+
+        body.dark-mode .theme-btn.active,
+        body.dark-mode .theme-btn:hover {
+          background-color: #3d4b5c;
+        }
+
+        body.dark-mode .menu-links a {
+          color: #e0e0e0;
+        }
+
+        body.dark-mode .menu-links a:hover {
+          background: #2a2a2a;
+        }
+
+        /* Responsive behavior */
+        @media screen and (max-width: 825px) {
+          .header-subset {
+            display: none;
+          }
+
+          .mobile-sublet-link {
+            display: block;
+          }
+        }
+
+        /* Hidden in full screen */
+        .mobile-sublet-link {
+          display: none;
+        }
+
+        .mobile-sublet-link a {
+          color: #3271a5;
+          font-weight: bold;
+        }
+
+        .mobile-sublet-link a:hover {
+          color: black;
+        }
+    

@@ -1,22 +1,28 @@
 * {
     margin: 0;
-    padding: 0;
-    
+    padding: 0;   
 }
 
 html{
     text-align: center;
     font-size: 15pt;
 }
-
 .wrapper {
+    box-sizing: border-box;
     background-color: var(--base-color);
-    padding: 40px;
-    border-radius: 10px;
-    width: 400px;
+      /* Adjust this value based on content size */
+    width: max(40%, 500px);
+    
+    padding: 50px;
+    /*something is wrong with the border-radius*/
+    
+    border-radius: 10px ;
+    
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    margin-bottom:0 ;
 }
 
 h1 {
@@ -27,16 +33,16 @@ h1 {
     position: absolute; /* Keeps it positioned at the top */
     top: 0%;
 }
+
 h3{
     font-size: 15pt;
     color: var(--accent-color);
     font-family: Poppins, Segoe UI, sans-serif;
-    text-align: center; /* Centers the text horizontally */
     position: fixed;
-    top: 10%; /* Centers the text horizontally */
-
-  
+    text-align: center; /* Centers the text horizontally */
+    top: 10%;
 }
+
 
 h2{
 
@@ -44,16 +50,14 @@ h2{
     color: var(--accent-color);
     font-family: Poppins, Segoe UI, sans-serif;
     text-transform: uppercase;
-    text-align: center;
-    white-space: nowrap; /* Centers the text horizontally */
+    text-align: center; /* Centers the text horizontally */
     
+
 }
-
-
 
 body {
     min-height: 100vh;
-    background-image: url(Boston_Login_Page.jpg);
+    background-image: url(../Photos/Boston_Login_Page.jpg);
     background-size: cover;
     background-position: right;
     display: flex;
@@ -68,55 +72,43 @@ ul {
     color: var(--accent-color);
     font-family: Poppins, Segoe UI, sans-serif;
     text-align: center; /* Centers the text horizontally */
-     /* Keeps it positioned at the top */
-    
+     /* Keeps it positioned at the top */  
 
 }
 
-.wrapper {
-    box-sizing: border-box;
-    background-color: var(--base-color);
-      /* Adjust this value based on content size */
-    width: max(40%, 500px);
-    padding: 50px;
-    /*something is wrong with the border-radius*/
-    
-    border-radius: 0 10px 10px 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom:0 ;
-
-}
 
 form{
     width: min(400px, 100%);
     margin: 0%;
     margin-bottom: 10%;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /*this is the section for
+                            making the signup area vertical 
+                            not horizontal */
     align-items: center;
     gap: 10px;
 }
 
 form > div {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+    width: 100%; /* adjusts the length of the input boxes.*/
+    display: flex; 
+    justify-content: center; /* centers the input boxes*/
 }
+
+ /*this makes sure that the icons are next to there 
+ respective input box*/
 form label{
     flex-shrink: 0;
-    height: 45px;
+    height: 45px; /* height for the icons*/
     width: 40px;
     background-color: none;
     fill: (var(--base-color));
     color: var(--base-color);
-    border-radius: 10px 0 0 10px;
+    border-radius: 10px 0 0 10px; 
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 20pt;
+    font-size: 25pt;
     
     font-weight: 500;
 }
@@ -144,18 +136,17 @@ form input :focus {
     border-color: var(--base-color);
 }
 div:has(input:focus) > label{
-    background-color: var(--base-color); /*when clicked on input box 
-                                            the icon also shows up*/
+    background-color: var(--base-color);
 }
 form input::placeholder{
     color: var(--text-color);
 }
 form button{
-    margin-top: 0px;
-    margin-left: -45%;
+    margin-top: 0;
+    /*margin-left: 90%;*/
     border: none;
     border-radius: 1000px;
-    padding: 0.2em 2em;
+    padding: 0.15em 2em;
     background-color: var( --input-color);
     color: var(--accent-color);
     font: inherit;
@@ -165,26 +156,21 @@ form button{
     transition: 150ms ease;
 }
 
-
 form button:hover {
     color: white;
     background-color: var(--accent-color);
 }
 form button:focus {
     outline: none;
-    font-weight: bold;
-    background-color: var(--text-color);
     
-
+    background-color: var(--text-color);
 }
 a{
     font-size: 20pt;
     text-decoration: none;
     font-weight: bold;
-    color: var(--login-color);
+    color: var(--login-color); /* Create an Account*/
     text-decoration: underline;
-    
-    /* Create an Account*/
 }
 a:hover{
     text-decoration: unerline;
@@ -196,8 +182,10 @@ a:hover{
 
     }
 }
-form div.incorrect {
+form div.incorrect input {
     border-color: red;
+
+
 }
 
 
@@ -207,3 +195,8 @@ form div.incorrect {
     margin-top: 10px;  /* Adjusted margin */
     text-align: center;
 }
+
+
+
+
+

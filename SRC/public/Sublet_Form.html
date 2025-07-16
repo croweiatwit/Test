@@ -1,112 +1,470 @@
-
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simple Form Page</title>
-  <link rel="stylesheet" href="Sublet_Form.css">
-  <link rel="stylesheet" href="Gobal_Page.css">
-  <script src="Sublet_Form.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="CSS/Gobal_Page.css">
+  <link rel="stylesheet" href="CSS/Sublet_Form.css">
+  <title>Sublet Form</title>
 </head>
-
 <body>
-<div class="center-container">
-  <div class="back">
-    <button onclick="goBack()">&times;</button>
-  </div>
-
-  <div class="top-strip"> 
-    <h1>Sublet Form</h1>
-  </div>
-
-  <form action="/submit-form" method="POST" enctype="multipart/form-data">
-
-    <!-- Photo Upload -->
-    <div class="form-box">
-      <label for="photo" class="upload-label">Upload Photo(s) Here</label><br>
-      <input type="file" class="file-input" id="photo"  name="files" multiple accept="image/*" onchange="previewImage(event)">
-      <div class="img-wrap" id="previewContainer" style="display: none;">
-        <span class="close" onclick="removePreview()">&times;</span>
-        <img id="imagePreview" alt="Image Preview" style="max-width: 200px;" style="max-height: 150px;"/>
+  <div class="form-container">
+      
+    <div class="outer" onclick="window.history.back();">
+      <div class="inner">
+        <label>Back</label>
       </div>
-    </div>
-
-    <!-- User Info -->
-    <div class="form-box">
-      <label>User Name<br>
-        <input type="text" id="User_Name" name="User_Name" required>
-      </label><br>
-
-      <label>User Email<br>
-        <input type="email" id="Email" name="Email" required>
-      </label>
-    </div>
-
-    <!-- Apartment Info -->
-    <div class="form-box">
-      <label>Apartment Name<br>
-        <input type="text" id="Apartment_Name" name="Apartment_Name" required>
-      </label><br>
-
-      <label>Apartment Address<br>
-        <input type="text" id="Address" name="Address" required>
-      </label>
-    </div>
-
-    <!-- Room Details (Horizontal) -->
-    <div class="form-box row-group">
-  <!-- Studio Group -->
-  <div class="input-block">
-    <label>Studio</label><br>
-    <input type="radio" name="studio" value="yes"> Yes<br>
-    <input type="radio" name="studio" value="no"> No
   </div>
 
-  <!-- Bedrooms -->
-  <div class="input-block">
-    <label>Bedrooms</label><br>
-    <input type="number" id="Bedrooms" name="Bedrooms" required>
-  </div>
 
-  <!-- Bathroom -->
-  <div class="input-block">
-    <label>Bathroom</label><br>
-    <input type="number" id="Bathroom" name="Bathroom" required>
-  </div>
+    
+    <!-- Left Panel -->
+    <div class="form-intro">
+      <img src="Photos/Boston_Logo.png" alt="User Avatar" class="avatar">
+      <h2>Let's get you set up</h2>
+      <p>It should only take a couple of minutes to upload your sublet details</p>
+      <button class="arrow-button">➔</button>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="form-fields">
+      <form id="submit-form" action="/submit-form" method="POST" enctype="multipart/form-data">
+
+        <!-- Upload Photo -->
+        <div class="form-box">
+          <label for="photo">Upload Photo(s) Here</label><br>
+          <input type="file" id="photo" name="files" multiple accept="photo/*">
+        </div>
+
+        <!-- User Info -->
+        <div class="form-box">
+          <label>User Name<br>
+            <input type="text" id="User_Name" name="User_Name" required>
+          </label><br>
+
+          <label>User Email<br>
+            <input type="email" id="Email" name="Email" required>
+          </label>
+        </div>
+
+        <!-- Apartment Info -->
+        <div class="form-box">
+          <label>Apartment Name<br>
+            <input type="text" id="Apartment_Name" name="Apartment_Name" required>
+          </label><br>
+
+          <label>Apartment Address<br>
+            <input type="text" id="Address" name="Address" required>
+          </label>
+        </div>
+
+        <!-- Room Details -->
+        <div class="form-box row-group">
+          <div class="input-block">
+            <label>Studio</label><br>
+            <input type="radio" name="studio" value="yes"> Yes<br>
+            <input type="radio" name="studio" value="no"> No
+          </div>
+
+          <div class="input-block">
+            <label>Bedrooms</label><br>
+            <input type="number" id="Bedrooms" name="Bedrooms" required>
+          </div>
+
+          <div class="input-block">
+            <label>Bathroom</label><br>
+            <input type="number" id="Bathroom" name="Bathroom" required>
+          </div>
+        </div>
+
+        <!-- Rent -->
+        <div class="form-box">
+          <label>Monthly Rent<br>
+            <input type="number" id="Rent" name="Rent" required>
+          </label>
+        </div>
+
+                <!-- Date Range -->
+        <div class="form-box row-group">
+          <label>Start Date<br>
+            <input type="date" id="Start" name="Start" required>
+          </label>
+
+          <label>End Date<br>
+            <input type="date" id="End" name="End" required>
+          </label>
+        </div>
+          
+
+      <style>
+ /* new new new*/
+
+   .form-section {
+
+  padding: 20px;
+    width: 96%;
+    margin: 30px auto 30px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    align-items: center;
+  }
+
+ .switch {
+  position: relative;
+  
+  width: 50px;
+  height: 26px;
+  margin-left: 10px;
+  
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 34px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.2s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #3271a5;
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+.option-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+
+}
+
+  </style>
+  <div class="form-section">
+    <div class="form-section-overview">Optional: However Heavily Suggested</div>
+    <div class="form-section-label">Parking:</div>
+
+    <div class="question-box">
+
+<div class="option-box switch-field">
+  <label for="available">Available</label>
+  <label class="switch">
+    <input type="checkbox" name="available" value="yes" data-fallback="no">
+    <span class="slider"></span>
+  </label>
+</div>
+ <div class="option-box switch-field">
+  <label for="outdoor">Outdoors</label>
+  <label class="switch">
+    <input type="checkbox" name="outdoor" value="yes" data-fallback="no">
+    <span class="slider"></span>
+  </label>
 </div>
 
-    <div class="form-box">
-      <label>Rent<br>
-        <input type="number" id="Rent" name="Rent" required>
-      </label>
-
-    </div>
-    <!-- Parking -->
-    <div class="form-box">
-      <label>Parking</label><br>
-      <input type="radio" name="Parking" value="yes" required> Yes<br>
-      <input type="radio" name="Parking" value="no"> No
-    </div>
-    <!-- Dates (Horizontal) -->
-    <div class="form-box row-group">
-      <label>Start Date<br>
-        <input type="date" id="Start" name="Start" required>
-      </label>
-
-      <label>End Date<br>
-        <input type="date" id="End" name="End" required>
-      </label>
-    </div>
-
-    <!-- Buttons -->
-    <div class="button-group">
-      <button type="button">Preview Submission</button>
-      <button type="submit" onclick="submitForm()">Submit for Approval</button>
-    </div>
-
-  </form>
+<div class="option-box switch-field">
+  <label for="indoor">Indoor</label>
+  <label class="switch">
+    <input type="checkbox" name="indoor" value="yes" data-fallback="no">
+    <span class="slider"></span>
+  </label>
 </div>
+
+<div class="option-box switch-field">
+  <label for="public">Public</label>
+  <label class="switch">
+    <input type="checkbox" name="public" value="yes" data-fallback="no">
+    <span class="slider"></span>
+  </label>
+</div>
+
+<div class="option-box switch-field">
+  <label for="other">Other</label>
+  <label class="switch">
+    <input type="checkbox" name="other" value="yes" data-fallback="no">
+    <span class="slider"></span>
+  </label>
+</div>
+  </div>
+
+
+  <div class="form-section-label">Kitchen:</div>
+
+<div class="question-box">
+
+  <div class="option-box switch-field">
+    <label for="microwave">Microwave</label>
+    <label class="switch">
+    <input type="checkbox" name="microwave" value="yes" data-fallback="no">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="option-box switch-field">
+    <label for="fridge">Refrigerator</label>
+    <label class="switch">
+    <input type="checkbox" name="fridge" value="yes" data-fallback="no">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="option-box switch-field">
+    <label for="oven">Oven</label>
+    <label class="switch">
+    <input type="checkbox" name="oven" value="yes" data-fallback="no">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="option-box switch-field">
+    <label for="grill">Grill</label>
+    <label class="switch">
+    <input type="checkbox" name="grill" value="yes" data-fallback="no">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="option-box switch-field">
+    <label for="dishwasher">Dishwasher</label>
+    <label class="switch">
+          <input type="checkbox" name="dishwasher" value="yes" data-fallback="no">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="option-box switch-field">
+    <label for="pantry">Pantry</label>
+    <label class="switch">
+    <input type="checkbox" name="pantry" value="yes" data-fallback="no">
+      <span class="slider"></span>
+    </label>
+  </div>
+  </div>
+ 
+ <div class="form-section-label">Apartment Features:</div>
+<div class="question-box">
+
+  <div class="option-box switch-field">
+    <label for="furnished" style="font-weight: bolder;">Furnished</label>
+    <label class="switch">
+    <input type="checkbox" name="furnished" value="yes" data-fallback="no">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="option-box switch-field">
+    <label for="washer">Washer/Dryer</label>
+    <label class="switch">
+    <input type="checkbox" name="washer" value="yes" data-fallback="no">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="option-box switch-field">
+    <label for="patio">Patio</label>
+    <label class="switch">
+    <input type="checkbox" name="patio" value="yes" data-fallback="no">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="option-box switch-field">
+    <label for="closet">Closet(s)</label>
+    <label class="switch">
+    <input type="checkbox" name="closet" value="yes" data-fallback="no">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="option-box switch-field">
+    <label for="tub">Bath Tub</label>
+    <label class="switch">
+    <input type="checkbox" name="tub" value="yes" data-fallback="no">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="option-box switch-field">
+    <label for="ac">A/C</label>
+    <label class="switch">
+    <input type="checkbox" name="ac" value="yes" data-fallback="no">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="option-box switch-field">
+    <label for="heat">Heating</label>
+    <label class="switch">
+    <input type="checkbox" name="heat" value="yes" data-fallback="no">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="option-box switch-field">
+    <label for="security">Security System</label>
+    <label class="switch">
+    <input type="checkbox" name="security" value="yes" data-fallback="no">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  </div>
+
+<div class="form-section-label">Community Amenities:</div>
+
+<div class="question-box">
+
+  <div class="option-box switch-field">
+    <label for="gym">Gym</label>
+    <label class="switch">
+    <input type="checkbox" name="gym" value="yes" data-fallback="no">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="option-box switch-field">
+    <label for="laundry">Laundry Room</label>
+    <label class="switch">
+    <input type="checkbox" name="laundry" value="yes" data-fallback="no">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="option-box switch-field">
+    <label for="elevator">Elevator</label>
+    <label class="switch">
+    <input type="checkbox" name="elevator" value="yes" data-fallback="no">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="option-box switch-field">
+    <label for="access">24H Access</label>
+    <label class="switch">
+    <input type="checkbox" name="access" value="yes" data-fallback="no">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="option-box switch-field">
+    <label for="c-access">Controlled Access</label>
+
+    <label class="switch">
+    <input type="checkbox" name="c-access" value="yes" data-fallback="no">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="option-box switch-field">
+    <label for="bike">Bike Storage</label>
+
+    <label class="switch">
+    <input type="checkbox" name="bike" value="yes" data-fallback="no">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="option-box switch-field">
+    <label for="courtyard">Courtyard</label>
+    <label class="switch">
+    <input type="checkbox" name="courtyard" value="yes" data-fallback="no">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+</div>
+
+
+<div class="form-section-label">Technology:</div>
+
+<div class="question-box">
+
+  <div class="option-box switch-field">
+    <label for="wifi">Wifi</label>
+    <label class="switch">
+      <input type="checkbox" name="wifi" value="yes" data-fallback="no">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="option-box switch-field">
+    <label for="ethernet">Ethernet</label>
+    <label class="switch">
+    <input type="checkbox" name="ethernet" value="yes" data-fallback="no">
+
+      <span class="slider"></span>
+    </label>
+  </div>
+
+</div>
+
+
+        <!-- Buttons -->
+        <div class="button-group">
+          <button type="button">Preview Submission</button>
+          <button type="submit" onclick="submitForm()">Submit for Approval</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+
+<script>
+document.getElementById('submit-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const form = e.target;
+  const formData = new FormData(form);
+
+  try {
+    const res = await fetch('/submit-form', {
+      method: 'POST',
+      body: formData
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      // ✅ This line performs the actual redirect
+      window.location.href = "/Home_Page.html";
+    } else {
+      alert('❌ Submission failed.');
+    }
+  } catch (err) {
+    console.error('❌ Error submitting form:', err);
+    alert('⚠️ Something went wrong.');
+  }
+});
+</script>
+
+
 </body>
 </html>

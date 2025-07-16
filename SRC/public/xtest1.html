@@ -1,0 +1,306 @@
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+
+
+    .main-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .left-pane,
+    .right-pane {
+      width: 100%;
+    }
+
+    .map-wrapper iframe {
+      width: 100%;
+      height: 200px;
+      border: 0;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .listing-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .listing-card:hover {
+      transform: scale(1.01);
+    }
+
+    .listing-image img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      background: #eee;
+    }
+
+    .listing-content {
+      padding: 16px;
+    }
+
+    .listing-content h2 {
+      font-size: 18px;
+      margin: 0 0 8px;
+    }
+
+    .listing-content p {
+      margin: 4px 0;
+      font-size: 14px;
+      color: #444;
+    }
+
+    @media (min-width: 796px) {
+      .main-layout {
+        flex-direction: row;
+      }
+
+      .left-pane,
+      .right-pane {
+        width: 50%;
+      }
+
+      .map-wrapper iframe {
+        height: 400px;
+      }
+
+      .grid-container {
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      }
+    }
+  </style>
+
+
+  <div class="main-layout">
+    <div class="left-pane">
+      <div class="map-wrapper">
+        <iframe
+          id="mapFrame"
+          style="border:0;"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+
+    <div class="right-pane">
+      <div class="grid-container" id="listing-grid"></div>
+    </div>
+  </div>
+
+
+  <script>
+  const listings = [
+    {
+      apartmentName: "The Equestrian At Pelham Parkway",
+      address: "1680 Pelham S, Bronx, NY 10461",
+      bedrooms: "1",
+      bathroom: "1",
+      rent: "1",
+      start: "2025-05-10",
+      end: "2025-06-24",
+      photoPath: "",
+      available: "yes",
+      parkingOutdoor: "yes",
+      parkingIndoor: "no",
+      parkingPublic: "no",
+      parkingOther: "yes",
+      kitchenMicrowave: "yes",
+      kitchenFridge: "yes",
+      kitchenOven: "yes",
+      kitchenGrill: "yes",
+      kitchenDishwasher: "yes",
+      kitchenPantry: "no",
+      furnished: "yes",
+      hasWasher: "no",
+      hasPatio: "no",
+      hasCloset: "yes",
+      hasTub: "yes",
+      hasAC: "yes",
+      hasHeat: "yes",
+      hasSecurity: "yes",
+      hasLaundry: "no",
+      hasElevator: "no",
+      hasAccess: "no",
+      hasControlledAccess: "no",
+      hasBikeStorage: "no",
+      hasCourtyard: "no",
+      hasWindow: "yes",
+      hasGym: "no",
+      hasEthernet: "yes"
+    },
+    {
+      apartmentName: "The Crows Nest",
+      address: "66 lockwood ln Boxford Mass ",
+      bedrooms: "1",
+      bathroom: "1",
+      rent: "1",
+      start: "2025-05-10",
+      end: "2025-06-24",
+      photoPath: "",
+      available: "yes",
+      parkingOutdoor: "yes",
+      parkingIndoor: "no",
+      parkingPublic: "no",
+      parkingOther: "yes",
+      kitchenMicrowave: "yes",
+      kitchenFridge: "yes",
+      kitchenOven: "yes",
+      kitchenGrill: "yes",
+      kitchenDishwasher: "yes",
+      kitchenPantry: "no",
+      furnished: "yes",
+      hasWasher: "no",
+      hasPatio: "no",
+      hasCloset: "yes",
+      hasTub: "yes",
+      hasAC: "yes",
+      hasHeat: "yes",
+      hasSecurity: "yes",
+      hasLaundry: "no",
+      hasElevator: "no",
+      hasAccess: "no",
+      hasControlledAccess: "no",
+      hasBikeStorage: "no",
+      hasCourtyard: "no",
+      hasWindow: "yes",
+      hasGym: "no",
+      hasEthernet: "yes"
+    },{
+      apartmentName: "The Chicken Coop",
+      address: "17 Topsfield Rd, Wenham, MA 01984",
+      bedrooms: "1",
+      bathroom: "1",
+      rent: "1",
+      start: "2025-05-10",
+      end: "2025-06-24",
+      photoPath: "",
+      available: "yes",
+      parkingOutdoor: "yes",
+      parkingIndoor: "no",
+      parkingPublic: "no",
+      parkingOther: "yes",
+      kitchenMicrowave: "yes",
+      kitchenFridge: "yes",
+      kitchenOven: "yes",
+      kitchenGrill: "yes",
+      kitchenDishwasher: "yes",
+      kitchenPantry: "no",
+      furnished: "yes",
+      hasWasher: "no",
+      hasPatio: "no",
+      hasCloset: "yes",
+      hasTub: "yes",
+      hasAC: "yes",
+      hasHeat: "yes",
+      hasSecurity: "yes",
+      hasLaundry: "no",
+      hasElevator: "no",
+      hasAccess: "no",
+      hasControlledAccess: "no",
+      hasBikeStorage: "no",
+      hasCourtyard: "no",
+      hasWindow: "yes",
+      hasGym: "no",
+      hasEthernet: "yes"
+    },
+    {
+      apartmentName: "The Jayden Apartments",
+      address: "7 Dearborn Rd, Peabody, MA 01960",
+      bedrooms: "1",
+      bathroom: "1",
+      rent: "1",
+      start: "2025-05-10",
+      end: "2025-06-24",
+      photoPath: "",
+      available: "yes",
+      parkingOutdoor: "yes",
+      parkingIndoor: "no",
+      parkingPublic: "no",
+      parkingOther: "yes",
+      kitchenMicrowave: "yes",
+      kitchenFridge: "yes",
+      kitchenOven: "yes",
+      kitchenGrill: "yes",
+      kitchenDishwasher: "yes",
+      kitchenPantry: "no",
+      furnished: "yes",
+      hasWasher: "no",
+      hasPatio: "no",
+      hasCloset: "yes",
+      hasTub: "yes",
+      hasAC: "yes",
+      hasHeat: "yes",
+      hasSecurity: "yes",
+      hasLaundry: "no",
+      hasElevator: "no",
+      hasAccess: "no",
+      hasControlledAccess: "no",
+      hasBikeStorage: "no",
+      hasCourtyard: "no",
+      hasWindow: "yes",
+      hasGym: "no",
+      hasEthernet: "yes"
+    }
+  ];
+
+  const grid = document.getElementById('listing-grid');
+
+  listings.forEach(listing => {
+    const {
+      apartmentName, address, rent, bedrooms, bathroom, start, end, photoPath
+    } = listing;
+
+    // const photoPath = listing.photoPaths?.[0]; // grab first image path, or undefined
+    // const imageSrc = photoPath || "/Photos/Boston_Logo_White.png";
+
+const imageSrc = photoPath || "https://placehold.co/600x400/000000/FFF";
+
+
+
+    const card = `
+      <div class="listing-card">
+        <div class="listing-image">
+          <img src="${imageSrc}" alt="${apartmentName}">
+        </div>
+        <div class="listing-content">
+          <h2>${apartmentName} - $${rent}/mo</h2>
+          <p><strong>Address:</strong> ${address}</p>
+          <p><strong>${bedrooms} Bed</strong> | <strong>${bathroom} Bath</strong></p>
+          <p><strong>Available:</strong> ${start} to ${end}</p>
+        </div>
+      </div>
+    `;
+
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = card;
+
+    const cardElement = wrapper.firstElementChild;
+    cardElement.addEventListener("click", () => {
+      localStorage.setItem("selectedListing", JSON.stringify(listing));
+      window.location.href = "listing_detail.html";
+    });
+
+    grid.appendChild(cardElement);
+  });
+
+</script>
+
+
